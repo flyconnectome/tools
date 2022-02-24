@@ -33,7 +33,9 @@ In Python, we find packages analogous to those in R:
    [MICRoNs](https://navis.readthedocs.io/en/latest/source/tutorials/microns_tut.html),
    neuromorpho,
    [NEURON](https://navis.readthedocs.io/en/latest/source/tutorials/neuron.html) and
-   [InsectBrainDB](https://navis.readthedocs.io/en/latest/source/tutorials/insectbraindb.html)
+   [InsectBrainDB](https://navis.readthedocs.io/en/latest/source/tutorials/insectbraindb.html). Check
+   out the [Quickstart](https://navis.readthedocs.io/en/latest/source/tutorials/quickstart.html) article
+   and the various [tutorials](https://navis.readthedocs.io/en/latest/source/gallery.html).
 3. [`pymaid`](https://pymaid.readthedocs.io/en/latest/) lets you interface with CATMAID servers. Critically, it's built on top of `navis` and you can
     use any `navis` function with `pymaid` neurons. Side note: due to a name clash the library is called `python-catmaid` on PyPI.
 
