@@ -22,6 +22,7 @@ the **n**euro**a**natomy **t**oolbox, `nat`. Of particular relevance:
 4. [`neuromorphr`](https://natverse.github.io/neuromorphr/) lets you search and pull data from neuromorpho.org
 5. [`fishatlas`](https://github.com/natverse/fishatlas) provides R client utilities for interacting with the [Fish Brain Atlas Project](https://www.neuro.mpg.de/baier/connectome), which has [successfully](https://www.cell.com/neuron/pdfExtended/S0896-6273(19)30391-5) acquired and registered almost 2,000 neurons from the larval zebrafish into a standard, annotated template space.
 6. [`mouselightr`](https://github.com/natverse/mouselightr) provides an interface with the [MouseLight](http://mouselight.janelia.org/) at [Janelia Research Campus](https://www.janelia.org/), which has [successfully](https://www.cell.com/neuron/pdfExtended/S0896-6273(19)30391-5) acquired and registered almost ~1,000 neurons from the mouse into a standard, annotated template space.
+7 . ['fafbseg'](https://github.com/natverse/fafbseg) provides functions to work with both the Google and FlyWire segmentation of the FAFB dataset.
 
 ## Python
 In Python, we find packages analogous to those in R:
@@ -38,6 +39,7 @@ In Python, we find packages analogous to those in R:
    and the various [tutorials](https://navis.readthedocs.io/en/latest/source/gallery.html).
 2. [`pymaid`](https://pymaid.readthedocs.io/en/latest/) lets you interface with CATMAID servers. Critically, it's built on top of `navis` and you can
     use any `navis` function with `pymaid` neurons. Side note: due to a name clash the library is called `python-catmaid` on PyPI.
+3. ['fafbseg'](https://fafbseg-py.readthedocs.io/en/latest/) provides functions to work with both the Google and FlyWire segmentation of the FAFB dataset.
 
 ## Noteworthy mentions
 There are a few more packages/functions that might be of interest:
