@@ -3,10 +3,10 @@
 We have developed multiple tools to work with neuroanatomical data. Here is a quick overview:
 
 <p align="center">
-<img src="https://github.com/flyconnectome/how_to/blob/main/tools1.png" width="600">
+<img src="https://github.com/flyconnectome/tools/raw/main/img/tools.png" width="600">
 </p>
 
-Below are brief descriptions of the libraries/packages. For details, I defer to their respective (excellent) documentations.
+Below are brief descriptions of the libraries/packages. For details, I defer to their respective (excellent) docs.
 
 ## R
 In R, the [natverse](http://natverse.org) is your one-stop-shop for all things neuron: it's a collection of various R packages that are built on top of
@@ -31,19 +31,19 @@ In Python, we find packages analogous to those in R:
    [Blender 3D](https://www.blender.org),
    [neuPrint](https://navis.readthedocs.io/en/latest/source/tutorials/neuprint.html),
    [MICRoNs](https://navis.readthedocs.io/en/latest/source/tutorials/microns_tut.html),
-   neuromorpho,
+   [neuromorpho](http://neuromorpho.org),
    [NEURON](https://navis.readthedocs.io/en/latest/source/tutorials/neuron.html) and
    [InsectBrainDB](https://navis.readthedocs.io/en/latest/source/tutorials/insectbraindb.html). Check
    out the [Quickstart](https://navis.readthedocs.io/en/latest/source/tutorials/quickstart.html) article
    and the various [tutorials](https://navis.readthedocs.io/en/latest/source/gallery.html).
-3. [`pymaid`](https://pymaid.readthedocs.io/en/latest/) lets you interface with CATMAID servers. Critically, it's built on top of `navis` and you can
+2. [`pymaid`](https://pymaid.readthedocs.io/en/latest/) lets you interface with CATMAID servers. Critically, it's built on top of `navis` and you can
     use any `navis` function with `pymaid` neurons. Side note: due to a name clash the library is called `python-catmaid` on PyPI.
 
 ## Noteworthy mentions
-There are a few more packages/functions that you might hear about:
+There are a few more packages/functions that might be of interest:
 
 <p align="center">
-<img src="https://github.com/flyconnectome/how_to/blob/main/tools2.png" width="600">
+<img src="https://github.com/flyconnectome/tools/raw/main/img/tools2.png" width="600">
 </p>
 
 ### NBLAST
@@ -52,5 +52,5 @@ NBLAST is an algorithm that computes morphological similarity between neurons ([
 On the R side the algorithm is implemented in [`nat.nblast`](https://natverse.github.io/nat.nblast/) and in Python it is part of `navis` (see this [tutorial](https://navis.readthedocs.io/en/latest/source/tutorials/nblast.html)).
 
 ### Transforms
-Neuronanatomical databases (like e.g. VirtualFlyBrain) typically register neurons to a template space which facilitates e.g. co-visualization of neurons from different
-datasets. If you want to transform spatial data between template brains, e.g. from FAFB ("FAFB14") to hemibrain ("JRCFIB2018F"), you should look for [`nat.flybrains`](https://natverse.github.io/nat.flybrains/) & [`nat.jrcbrains`](https://github.com/natverse/nat.jrcbrains) in R and [`navis-flybrains`](https://github.com/schlegelp/navis-flybrains) in Python. These also allow you to define custom transforms e.g. via landmarks.
+Neuroanatomical databases (like e.g. VirtualFlyBrain) typically register neurons to a template space which facilitates e.g. co-visualization of neurons from different
+datasets. If you want to transform spatial data between template brains, e.g. from FAFB ("FAFB14") to the Janelia hemibrain ("JRCFIB2018F"), you should look for [`nat.flybrains`](https://natverse.github.io/nat.flybrains/) & [`nat.jrcbrains`](https://github.com/natverse/nat.jrcbrains) in R and [`navis-flybrains`](https://github.com/schlegelp/navis-flybrains) in Python. These also allow you to define custom transforms e.g. via landmarks.
