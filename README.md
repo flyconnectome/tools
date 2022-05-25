@@ -40,6 +40,9 @@ In Python, we find packages analogous to those in R:
 2. [`pymaid`](https://pymaid.readthedocs.io/en/latest/) lets you interface with CATMAID servers. Critically, it's built on top of `navis` and you can
     use any `navis` function with `pymaid` neurons. Side note: due to a name clash the library is called `python-catmaid` on PyPI.
 3. [`fafbseg`](https://fafbseg-py.readthedocs.io/en/latest/) provides functions to work with both the Google and FlyWire segmentation of the FAFB dataset.
+4. [`skeletor`](https://github.com/navis-org/skeletor) implements various skeletonization algorithms for meshes (`navis` uses this internally)
+5. [`sparse-cubes`](https://github.com/navis-org/sparse-cubes) is a library for extracting meshes from sparse voxel data (i.e. x/y/z voxel coordinates instead of a dense 3D matrix)
+6. [`nblast-large`](https://github.com/navis-org/navis-nblast-large) is a WIP implementation of NBLAST designed for _very_ large datasets (>100k neurons)
 
 ## Noteworthy mentions
 There are a few more packages/functions that might be of interest:
