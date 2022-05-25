@@ -28,7 +28,7 @@ In R, the [natverse](http://natverse.org) (published in [Bates, Manton _et al._,
 In Python, we find packages analogous to those in R:
 
 1. [`navis`](https://navis.readthedocs.io/en/latest/) is `nat`'s serpentine sibling: a general purpose neuron library for visualization and analysis
-   of neuronal morphologies. It also features interfaces e.g. with
+   of neuroanatomical data. It also features interfaces e.g. with
    [Blender 3D](https://www.blender.org),
    [neuPrint](https://navis.readthedocs.io/en/latest/source/tutorials/neuprint.html),
    [MICRoNs](https://navis.readthedocs.io/en/latest/source/tutorials/microns_tut.html),
