@@ -6,11 +6,10 @@ We have developed multiple tools to work with neuroanatomical data. Here is a qu
 <img src="https://github.com/flyconnectome/tools/raw/main/img/tools.png" width="600">
 </p>
 
-Below are brief descriptions of the libraries/packages. For details, I defer to their respective (excellent) docs.
+Below are brief descriptions and links of the libraries/packages. For details, I defer to their respective (excellent) docs.
 
 ## R
-In R, the [natverse](http://natverse.org) is your one-stop-shop for all things neuron: it's a collection of various R packages that are built on top of
-the **n**euro**a**natomy **t**oolbox, `nat`. Of particular relevance:
+In R, the [natverse](http://natverse.org) (published in [Bates, Manton _et al._, 2020](https://elifesciences.org/articles/53350)) is your one-stop-shop for all things neuron: it's a collection of various R packages that are built on top of the **n**euro**a**natomy **t**oolbox, `nat`. Of particular relevance:
 
 1. [`nat`](http://natverse.org/nat/) is a general-purpose library for working with neuronanatomical data.   
    I highly recommend having a look at the "Articles" in nat's [doc](http://natverse.org/nat/).
@@ -23,6 +22,7 @@ the **n**euro**a**natomy **t**oolbox, `nat`. Of particular relevance:
 5. [`fishatlas`](https://github.com/natverse/fishatlas) provides R client utilities for interacting with the [Fish Brain Atlas Project](https://www.neuro.mpg.de/baier/connectome), which has [successfully](https://www.cell.com/neuron/pdfExtended/S0896-6273(19)30391-5) acquired and registered almost 2,000 neurons from the larval zebrafish into a standard, annotated template space.
 6. [`mouselightr`](https://github.com/natverse/mouselightr) provides an interface with the [MouseLight](http://mouselight.janelia.org/) at [Janelia Research Campus](https://www.janelia.org/), which has [successfully](https://www.cell.com/neuron/pdfExtended/S0896-6273(19)30391-5) acquired and registered almost ~1,000 neurons from the mouse into a standard, annotated template space.
 7. [`fafbseg`](https://github.com/natverse/fafbseg) provides functions to work with both the Google and FlyWire segmentation of the FAFB dataset.
+8. [`nat.flybrains`](https://github.com/natverse/nat.flybrains) and [`nat.jrcbrains`](https://github.com/natverse/nat.jrcbrains) bundle various transforms for use with `nat` that let you xform e.g. neurons from one brain template to another 
 
 ## Python
 In Python, we find packages analogous to those in R:
@@ -40,9 +40,10 @@ In Python, we find packages analogous to those in R:
 2. [`pymaid`](https://pymaid.readthedocs.io/en/latest/) lets you interface with CATMAID servers. Critically, it's built on top of `navis` and you can
     use any `navis` function with `pymaid` neurons. Side note: due to a name clash the library is called `python-catmaid` on PyPI.
 3. [`fafbseg`](https://fafbseg-py.readthedocs.io/en/latest/) provides functions to work with both the Google and FlyWire segmentation of the FAFB dataset.
-4. [`skeletor`](https://github.com/navis-org/skeletor) implements various skeletonization algorithms for meshes (`navis` uses this internally)
-5. [`sparse-cubes`](https://github.com/navis-org/sparse-cubes) is a library for extracting meshes from sparse voxel data (i.e. x/y/z voxel coordinates instead of a dense 3D matrix)
-6. [`nblast-large`](https://github.com/navis-org/navis-nblast-large) is a WIP implementation of NBLAST designed for _very_ large datasets (>100k neurons)
+4. [`flybrains`](https://github.com/navis-org/navis-flybrains) bundles various transforms for use with `navis` that let you xform e.g. neurons from one brain template to another
+5. [`skeletor`](https://github.com/navis-org/skeletor) implements various skeletonization algorithms for meshes (`navis` uses this internally)
+6. [`sparse-cubes`](https://github.com/navis-org/sparse-cubes) is a library for extracting meshes from sparse voxel data (i.e. x/y/z voxel coordinates instead of a dense 3D matrix)
+7. [`nblast-large`](https://github.com/navis-org/navis-nblast-large) is a WIP implementation of NBLAST designed for _very_ large datasets (>100k neurons)
 
 ## Noteworthy mentions
 There are a few more packages/functions that might be of interest:
