@@ -19,6 +19,15 @@ function md(s) {
 }
 const plain = (s) => s.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/[`*]/g, "").replace(/(^|\s)_([^_]+)_/g, "$1$2");
 
+// Compact form for card footers ("17d", "4mo", "2y")
+function agoShort(iso) {
+  const days = (Date.now() - new Date(iso)) / 864e5;
+  if (days < 1) return "today";
+  if (days < 30) return `${Math.floor(days)}d`;
+  if (days < 365) return `${Math.floor(days / 30)}mo`;
+  return `${Math.floor(days / 365)}y`;
+}
+
 function ago(iso) {
   const days = (Date.now() - new Date(iso)) / 864e5;
   if (days < 1) return "today";
@@ -52,8 +61,8 @@ function card(t, { compact = false } = {}) {
     ${!compact && ds.length ? `<div class="ds">${ds.slice(0, 7).map(([d, k]) =>
       `<span class="${k}" title="${k} support">${esc(DSETS[d].name)}</span>`).join("")}${ds.length > 7 ? `<span>+${ds.length - 7}</span>` : ""}</div>` : ""}
     <div class="card-foot">
-      ${s ? `<span title="GitHub stars">${ICON_STAR} ${s.stars}</span><span title="Last push to GitHub">${ICON_CLOCK} ${ago(s.pushed_at)}</span>` : ""}
-      <span class="links">${docsDiffer ? `<a href="${esc(t.url)}">Docs</a>` : ""}${repoUrl ? `<a href="${repoUrl}">GitHub</a>` : ""}</span>
+      ${s ? `<span title="GitHub stars">${ICON_STAR} ${s.stars}</span><span title="Last push to GitHub: ${ago(s.pushed_at)}">${ICON_CLOCK} ${agoShort(s.pushed_at)}</span>` : ""}
+      <span class="links">${docsDiffer ? `<a href="${esc(t.url)}">Docs</a>` : ""}${repoUrl ? `<a href="${repoUrl}">GitHub</a><a href="${repoUrl}/issues" title="Report a bug or ask a question">Issues</a>` : ""}</span>
     </div>
   </article>`;
 }
@@ -299,18 +308,7 @@ function renderHeroStats() {
   if (STATS?.updated) $("#footer-meta").insertAdjacentHTML("beforeend", ` GitHub stats updated ${new Date(STATS.updated).toLocaleDateString()}.`);
 }
 
-function bindTheme() {
-  $(".theme-toggle").addEventListener("click", () => {
-    const root = document.documentElement;
-    const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-    root.dataset.theme = dark ? "light" : "dark";
-    try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
-    window.dispatchEvent(new Event("themechange"));
-  });
-}
-
 async function main() {
-  bindTheme();
   const [data, stats] = await Promise.all([
     fetch("data/tools.json").then((r) => r.json()),
     fetch("data/stats.json").then((r) => (r.ok ? r.json() : null)).catch(() => null),
@@ -333,6 +331,8 @@ async function main() {
     const a = e.target.closest('a[href^="#tool-"]');
     if (a) { e.preventDefault(); showTool(a.getAttribute("href").slice(6)); }
   });
+  // Deep links from other pages (e.g. people.html -> index.html#tool-navis)
+  if (location.hash.startsWith("#tool-")) setTimeout(() => showTool(location.hash.slice(6)), 300);
 }
 
 main();

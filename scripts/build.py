@@ -27,6 +27,7 @@ SITE_DATA = ROOT / "docs" / "data"
 LANGUAGES = ("r", "python", "web")
 STATUSES = ("stable", "wip", "restricted")
 SUPPORT = ("dedicated", "generic")
+PEOPLE_GROUPS = ("core", "major", "contributor")
 
 
 def load():
@@ -61,6 +62,14 @@ def validate(data):
     for p in data["pairs"]:
         for i in p.get("r", []) + p.get("python", []):
             assert i in ids, f"pair '{p['what']}': unknown tool {i!r}"
+    for person in data.get("people", []):
+        where = f"person '{person.get('name')}'"
+        for field in ("name", "github", "group"):
+            assert field in person, f"{where} is missing '{field}'"
+        assert person["group"] in PEOPLE_GROUPS, f"{where}: unknown group {person['group']!r}"
+        assert re.fullmatch(r"[A-Za-z0-9-]+", person["github"]), f"{where}: invalid GitHub handle"
+        for i in person.get("packages", []):
+            assert i in ids, f"{where}: unknown package {i!r}"
 
 
 def readme_section(tool):
@@ -97,6 +106,7 @@ def render_readme(data):
 
 def site_json(data):
     out = {k: data[k] for k in ("datasets", "categories", "pairs", "recipes")}
+    out["people"] = data.get("people", [])
     out["tools"] = []
     for t in data["tools"]:
         t = {k: v for k, v in t.items() if k not in ("readme", "readme_section")}

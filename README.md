@@ -1,7 +1,7 @@
 <!-- This file is generated from tools.yaml and scripts/README.template.md by scripts/build.py - edit those instead! -->
 # Neuroscience tools
 
-We have developed multiple tools to work with neuroanatomical and connectomics data. Here is a quick overview
+Together with collaborators and contributors from many other labs, we have developed multiple tools to work with neuroanatomical and connectomics data. Here is a quick overview
 (also available as a website: **[flyconnectome.github.io/tools](https://flyconnectome.github.io/tools/)**):
 
 <p align="center">
@@ -119,3 +119,8 @@ On the R side the algorithm is implemented in [`nat.nblast`](https://natverse.or
 ### Transforms
 Neuroanatomical databases (like e.g. VirtualFlyBrain) typically register neurons to a template space which facilitates e.g. co-visualization of neurons from different
 datasets. If you want to transform spatial data between template brains, e.g. from FAFB ("FAFB14") to the Janelia hemibrain ("JRCFIB2018F"), you should look for [`nat.flybrains`](https://natverse.org/nat.flybrains/) & [`nat.jrcbrains`](https://github.com/natverse/nat.jrcbrains) in R and [`navis-flybrains`](https://github.com/navis-org/navis-flybrains) in Python. For fish and mouse data, check out [`navis-fishbrains`](https://github.com/navis-org/navis-fishbrains) and [`navis-mousebrains`](https://github.com/navis-org/navis-mousebrains). These also allow you to define custom transforms e.g. via landmarks.
+
+## Get in touch
+- **Questions and bug reports:** please open an issue (or, where enabled, a discussion) on the GitHub repository of the tool in question.
+- **Something missing or out of date in this list?** Open an issue here or edit [`tools.yaml`](tools.yaml).
+- **Everything else** (collaborations, general enquiries): email us at [flyconnectome@gmail.com](mailto:flyconnectome@gmail.com).

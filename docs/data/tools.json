@@ -261,6 +261,206 @@
    "python": "import connecto as co\nfw = co.FlyWire()       # or co.FlyWire(backend=\"cave\")\nhb = co.Hemibrain()\nhb.connectivity.edges(\"DA1_lPN\")              # pre, post, weight\nskels = fw.skeletons.get(fw.ids(\"DA1_lPN\")[:2])"
   }
  ],
+ "people": [
+  {
+   "name": "Greg Jefferis",
+   "github": "jefferis",
+   "group": "core",
+   "affiliation": "MRC Laboratory of Molecular Biology",
+   "packages": [
+    "nat",
+    "fafbseg",
+    "rcatmaid",
+    "neuprintr",
+    "malevnc",
+    "coconatfly",
+    "nat.templatebrains",
+    "malecns",
+    "hemibrainr",
+    "nat.nblast",
+    "aedes",
+    "nat.flybrains",
+    "fancr",
+    "fishr",
+    "nat.jrcbrains",
+    "coconat",
+    "bancr",
+    "natmcp",
+    "mouselightr",
+    "seatabler",
+    "yakuba",
+    "crantr",
+    "insectbrainr"
+   ]
+  },
+  {
+   "name": "Philipp Schlegel",
+   "github": "schlegelp",
+   "group": "core",
+   "affiliation": "University of Cambridge",
+   "packages": [
+    "navis",
+    "pymaid",
+    "fafbseg-py",
+    "coda",
+    "octarine",
+    "skeletor",
+    "cocoa",
+    "fastcore",
+    "dvidtools",
+    "flybrains",
+    "sea-serpent",
+    "bigclust2",
+    "nglscenes",
+    "sparse-cubes",
+    "octarine-navis-plugin",
+    "connecto",
+    "mousebrains",
+    "fishbrains",
+    "coda-mcp"
+   ]
+  },
+  {
+   "name": "Alex Bates",
+   "github": "alexanderbates",
+   "group": "core",
+   "affiliation": "Harvard Medical School (Wilson lab)",
+   "previously": "MRC Laboratory of Molecular Biology",
+   "packages": [
+    "hemibrainr",
+    "bancr",
+    "fafbseg",
+    "neuprintr",
+    "neuronbridger",
+    "nat.ggplot",
+    "crantr",
+    "insectbrainr",
+    "influencer",
+    "mouselightr",
+    "neuromorphr",
+    "fishatlas",
+    "nat",
+    "rcatmaid"
+   ]
+  },
+  {
+   "name": "James Manton",
+   "github": "jdmanton",
+   "group": "major",
+   "affiliation": "MRC Laboratory of Molecular Biology",
+   "packages": [
+    "nat",
+    "nat.flybrains",
+    "nat.nblast",
+    "nat.templatebrains"
+   ]
+  },
+  {
+   "name": "Chris Barnes",
+   "github": "clbarnes",
+   "group": "major",
+   "affiliation": "German BioImaging",
+   "previously": "MRC Laboratory of Molecular Biology",
+   "packages": [
+    "navis",
+    "pymaid"
+   ]
+  },
+  {
+   "name": "Sridhar Jagannathan",
+   "github": "SridharJagannathan",
+   "group": "major",
+   "affiliation": "Charité – Universitätsmedizin Berlin",
+   "packages": [
+    "nat",
+    "rcatmaid",
+    "fafbseg",
+    "nat.jrcbrains"
+   ]
+  },
+  {
+   "name": "Dominik Krzemiński",
+   "github": "dokato",
+   "group": "major",
+   "affiliation": "University of Cambridge",
+   "packages": [
+    "malevnc",
+    "nat",
+    "malecns",
+    "fancr",
+    "navis"
+   ]
+  },
+  {
+   "name": "Romain Franconville",
+   "github": "romainFr",
+   "group": "major",
+   "packages": [
+    "neuprintr"
+   ]
+  },
+  {
+   "name": "Nik Drummond",
+   "github": "NikDrummond",
+   "group": "contributor",
+   "affiliation": "Max Planck Institute for Biological Intelligence",
+   "packages": [
+    "hemibrainr"
+   ]
+  },
+  {
+   "name": "Rob Court",
+   "github": "Robbie1977",
+   "group": "contributor",
+   "affiliation": "Virtual Fly Brain",
+   "packages": [
+    "flybrains"
+   ]
+  },
+  {
+   "name": "Frank Loesche",
+   "github": "floesche",
+   "group": "contributor",
+   "affiliation": "Janelia Research Campus",
+   "packages": [
+    "navis"
+   ]
+  },
+  {
+   "name": "Marta Costa",
+   "github": "mmc46",
+   "group": "contributor",
+   "affiliation": "University of Cambridge",
+   "packages": [
+    "hemibrainr",
+    "nat",
+    "fafbseg",
+    "neuprintr",
+    "rcatmaid"
+   ]
+  },
+  {
+   "name": "Andrew Champion",
+   "github": "aschampion",
+   "group": "contributor",
+   "affiliation": "E11 Bio & MRC Laboratory of Molecular Biology",
+   "packages": [
+    "navis"
+   ]
+  },
+  {
+   "name": "Stuart Berg",
+   "github": "stuarteberg",
+   "group": "contributor",
+   "affiliation": "HHMI Janelia Research Campus",
+   "packages": [
+    "neuprint-python",
+    "navis",
+    "dvidtools",
+    "sparse-cubes"
+   ]
+  }
+ ],
  "tools": [
   {
    "id": "coda",
