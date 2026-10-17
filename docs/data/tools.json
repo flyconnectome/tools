@@ -371,6 +371,7 @@
    "github": "SridharJagannathan",
    "group": "major",
    "affiliation": "Charité – Universitätsmedizin Berlin",
+   "previously": "University of Cambridge",
    "packages": [
     "nat",
     "rcatmaid",
@@ -382,7 +383,8 @@
    "name": "Dominik Krzemiński",
    "github": "dokato",
    "group": "major",
-   "affiliation": "University of Cambridge",
+   "affiliation": "Arm",
+   "previously": "University of Cambridge",
    "packages": [
     "malevnc",
     "nat",
@@ -421,7 +423,7 @@
    "name": "Frank Loesche",
    "github": "floesche",
    "group": "contributor",
-   "affiliation": "Janelia Research Campus",
+   "affiliation": "HHMI Janelia Research Campus",
    "packages": [
     "navis"
    ]
@@ -443,7 +445,8 @@
    "name": "Andrew Champion",
    "github": "aschampion",
    "group": "contributor",
-   "affiliation": "E11 Bio & MRC Laboratory of Molecular Biology",
+   "affiliation": "E11 Bio",
+   "previously": "University of Cambridge",
    "packages": [
     "navis"
    ]

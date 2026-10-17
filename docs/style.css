@@ -446,10 +446,11 @@ button { font: inherit; color: inherit; }
 .pkg[data-lang="python"] { border-color: color-mix(in srgb, var(--python) 45%, transparent); }
 .pkg[data-lang="web"] { border-color: color-mix(in srgb, var(--web) 45%, transparent); }
 .pkg:hover { color: var(--text); }
-.more { display: contents; }
-.more summary { font: 12px var(--font-mono); padding: 2px 8px; border-radius: 999px; cursor: pointer; color: var(--faint); list-style: none; border: 1px dashed var(--border-strong); }
-.more summary::-webkit-details-marker { display: none; }
-.more[open] summary { display: none; }
+.pkgs .more {
+  font: 12px var(--font-mono); padding: 2px 8px; border-radius: 999px; cursor: pointer;
+  color: var(--faint); background: none; border: 1px dashed var(--border-strong);
+}
+.pkgs .more:hover { color: var(--text); border-color: var(--muted); }
 .people-more { color: var(--muted); margin-top: 32px; max-width: 760px; }
 .people-more a, .people-page .section-head a { color: var(--text); }
 
