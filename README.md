@@ -120,6 +120,15 @@ On the R side the algorithm is implemented in [`nat.nblast`](https://natverse.or
 Neuroanatomical databases (like e.g. VirtualFlyBrain) typically register neurons to a template space which facilitates e.g. co-visualization of neurons from different
 datasets. If you want to transform spatial data between template brains, e.g. from FAFB ("FAFB14") to the Janelia hemibrain ("JRCFIB2018F"), you should look for [`nat.flybrains`](https://natverse.org/nat.flybrains/) & [`nat.jrcbrains`](https://github.com/natverse/nat.jrcbrains) in R and [`navis-flybrains`](https://github.com/navis-org/navis-flybrains) in Python. For fish and mouse data, check out [`navis-fishbrains`](https://github.com/navis-org/navis-fishbrains) and [`navis-mousebrains`](https://github.com/navis-org/navis-mousebrains). These also allow you to define custom transforms e.g. via landmarks.
 
+## Citing
+If these tools helped your research, please cite them. In short: the [natverse paper](https://doi.org/10.7554/eLife.53350) for natverse (R) packages,
+and the [NBLAST paper](https://doi.org/10.1016/j.neuron.2016.06.012) when using NBLAST.
+
+> **Citing `navis`:** there is no `navis` paper yet (one is in the works). Until then, please cite its Zenodo DOI
+> [10.5281/zenodo.4699382](https://doi.org/10.5281/zenodo.4699382), ideally with the version you used.
+
+See the [publications page](https://flyconnectome.github.io/tools/publications.html) for what to cite for each tool, plus a selection of publications that used them.
+
 ## Get in touch
 - **Questions and bug reports:** please open an issue (or, where enabled, a discussion) on the GitHub repository of the tool in question.
 - **Something missing or out of date in this list?** Open an issue here or edit [`tools.yaml`](tools.yaml).

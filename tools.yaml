@@ -802,3 +802,54 @@ people:
     group: contributor
     affiliation: HHMI Janelia Research Campus
     packages: [neuprint-python, navis, dvidtools, sparse-cubes]
+
+# Publications page (publications.html).
+#  cite:     what to cite when using a tool. kind: paper | software (Zenodo archive).
+#            `for` lists tool ids; the special id `natverse` means "all natverse (R) packages".
+#  selected: a (non-exhaustive) selection of publications that used the tools; `uses` as `for` above.
+#            Full lists: https://navis-org.github.io/navis/stable/publications/ and https://natverse.org/publications/
+publications:
+  cite:
+    - {kind: paper, authors: "Bates, Manton et al.", year: 2020, title: "The natverse, a versatile toolbox for combining and analysing neuroanatomical data", venue: eLife, doi: 10.7554/eLife.53350, for: [natverse]}
+    - {kind: paper, authors: "Costa et al.", year: 2016, title: "NBLAST: Rapid, sensitive comparison of neuronal structure and construction of neuron family databases", venue: Neuron, doi: 10.1016/j.neuron.2016.06.012, for: [nat.nblast, navis], note: "when using NBLAST"}
+    - {kind: paper, authors: "Dorkenwald et al.", year: 2024, title: "Neuronal wiring diagram of an adult brain", venue: Nature, doi: 10.1038/s41586-024-07558-y, for: [fafbseg, fafbseg-py], note: "when using FlyWire data"}
+    - {kind: paper, authors: "Schlegel et al.", year: 2024, title: "Whole-brain annotation and multi-connectome cell typing of Drosophila", venue: Nature, doi: 10.1038/s41586-024-07686-5, for: [fafbseg, fafbseg-py, coconatfly], note: "when using FlyWire data or annotations"}
+    - {kind: paper, authors: "Bates et al.", year: 2026, title: "Distributed control circuits across a brain-and-cord connectome", venue: Nature, doi: 10.1038/s41586-026-10735-w, for: [bancr, influencer]}
+    - {kind: paper, authors: "Berg et al.", year: 2026, title: "Sexual dimorphism in the complete Drosophila male central nervous system connectome", venue: Cell, doi: 10.1016/j.cell.2026.08.015, for: [malecns]}
+    - {kind: paper, authors: "Takemura et al.", year: 2023, title: "A connectome of the male Drosophila ventral nerve cord", venue: bioRxiv, doi: 10.1101/2023.06.05.543757, for: [malevnc], note: "see the malevnc README for related MANC papers"}
+    - {kind: paper, authors: "Bogovic et al.", year: 2020, title: "An unbiased template of the Drosophila brain and ventral nerve cord", venue: PLOS ONE, doi: 10.1371/journal.pone.0236495, for: [nat.jrcbrains, flybrains], note: "when using the JRC2018 templates and bridging registrations"}
+    - {kind: software, title: navis, doi: 10.5281/zenodo.4699382, for: [navis]}
+    - {kind: software, title: pymaid, doi: 10.5281/zenodo.4724558, for: [pymaid]}
+    - {kind: software, title: fafbseg-py, doi: 10.5281/zenodo.4966609, for: [fafbseg-py]}
+    - {kind: software, title: flybrains, doi: 10.5281/zenodo.4966640, for: [flybrains]}
+    - {kind: software, title: skeletor, doi: 10.5281/zenodo.4704488, for: [skeletor]}
+    - {kind: software, title: nat, doi: 10.5281/zenodo.598047, for: [nat]}
+    - {kind: software, title: nat.flybrains, doi: 10.5281/zenodo.594698, for: [nat.flybrains]}
+    - {kind: software, title: rcatmaid, doi: 10.5281/zenodo.594278, for: [rcatmaid]}
+    - {kind: software, title: neuprintr, doi: 10.5281/zenodo.3843544, for: [neuprintr]}
+    - {kind: software, title: malecns, doi: 10.5281/zenodo.21993185, for: [malecns]}
+    - {kind: software, title: Connectome Influence Calculator, doi: 10.5281/zenodo.15999929, for: [influencer]}
+    - {kind: software, title: aedes, doi: 10.5281/zenodo.22715772, for: [aedes]}
+    - {kind: software, title: neuprint-python, doi: 10.5281/zenodo.4968060, for: [neuprint-python]}
+  selected:
+    - {authors: "Bates et al.", year: 2026, title: "Distributed control circuits across a brain-and-cord connectome", venue: Nature, doi: 10.1038/s41586-026-10735-w, uses: [natverse, navis, bancr, influencer]}
+    - {authors: "Berg et al.", year: 2026, title: "Sexual dimorphism in the complete Drosophila male central nervous system connectome", venue: Cell, doi: 10.1016/j.cell.2026.08.015, uses: [navis, malecns]}
+    - {authors: "Sager et al.", year: 2026, title: "Spatial and morphological organization of mitochondria in neurons across a connectome", venue: Science, doi: 10.1126/science.ads6674, uses: [navis]}
+    - {authors: "Ishida et al.", year: 2026, title: "Neuronal calcium spikes enable vector inversion in the Drosophila brain", venue: Cell, doi: 10.1016/j.cell.2025.11.040, uses: [navis]}
+    - {authors: "Gao et al.", year: 2026, title: "Integrative analysis of single-neuron projectomes links connectome, transcriptome, and function in the mouse cortex", venue: Neuron, doi: 10.1016/j.neuron.2025.10.019, uses: [natverse]}
+    - {authors: "Jokura et al.", year: 2026, title: "Neural connectome of the ctenophore statocyst", venue: eLife, doi: 10.7554/elife.108420.3, uses: [natverse]}
+    - {authors: "Stürner et al.", year: 2025, title: "Comparative connectomics of Drosophila descending and ascending neurons", venue: Nature, doi: 10.1038/s41586-025-08925-z, uses: [natverse, navis]}
+    - {authors: "Raccuglia et al.", year: 2025, title: "Network synchrony creates neural filters promoting quiescence in Drosophila", venue: Nature, doi: 10.1038/s41586-025-09376-2, uses: [navis]}
+    - {authors: "Zhao et al.", year: 2025, title: "Eye structure shapes neuron function in Drosophila motion vision", venue: Nature, doi: 10.1038/s41586-025-09276-5, uses: [natverse]}
+    - {authors: "Shainer et al.", year: 2025, title: "Transcriptomic neuron types vary topographically in function and morphology", venue: Nature, doi: 10.1038/s41586-024-08518-2, uses: [natverse]}
+    - {authors: "Someya et al.", year: 2025, title: "Distinct circuit motifs evaluate opposing innate values of odors", venue: Cell, doi: 10.1016/j.cell.2025.08.032, uses: [natverse, navis]}
+    - {authors: "Verasztó et al.", year: 2025, title: "Whole-body connectome of a segmented annelid larva", venue: eLife, doi: 10.7554/elife.97964, uses: [natverse]}
+    - {authors: "Cheong et al.", year: 2025, title: "Transforming descending input into motor output: An analysis of the Drosophila Male Adult Nerve Cord connectome", venue: eLife, doi: 10.7554/elife.96084.2, uses: [natverse]}
+    - {authors: "Schlegel et al.", year: 2024, title: "Whole-brain annotation and multi-connectome cell typing of Drosophila", venue: Nature, doi: 10.1038/s41586-024-07686-5, uses: [natverse, navis, fafbseg-py]}
+    - {authors: "Dorkenwald et al.", year: 2024, title: "Neuronal wiring diagram of an adult brain", venue: Nature, doi: 10.1038/s41586-024-07558-y, uses: [navis]}
+    - {authors: "Shiu et al.", year: 2024, title: "A Drosophila computational brain model reveals sensorimotor processing", venue: Nature, doi: 10.1038/s41586-024-07763-9, uses: [navis]}
+    - {authors: "Westeinde et al.", year: 2024, title: "Transforming a head direction signal into a goal-oriented steering command", venue: Nature, doi: 10.1038/s41586-024-07039-2, uses: [natverse]}
+    - {authors: "Sapkal et al.", year: 2024, title: "Neural circuit mechanisms underlying context-specific halting in Drosophila", venue: Nature, doi: 10.1038/s41586-024-07854-7, uses: [natverse]}
+    - {authors: "Yang et al.", year: 2024, title: "Fine-grained descending control of steering in walking Drosophila", venue: Cell, doi: 10.1016/j.cell.2024.08.033, uses: [natverse]}
+    - {authors: "Cornean et al.", year: 2024, title: "Heterogeneity of synaptic connectivity in the fly visual system", venue: Nature Communications, doi: 10.1038/s41467-024-45971-z, uses: [navis]}
+    - {authors: "Schlegel, Bates et al.", year: 2021, title: "Information flow, cell types and stereotypy in a full olfactory connectome", venue: eLife, doi: 10.7554/eLife.66018, uses: [natverse, hemibrainr]}

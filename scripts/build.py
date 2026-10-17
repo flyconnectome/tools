@@ -68,6 +68,15 @@ def validate(data):
             for link in links:
                 assert {"title", "url"} <= set(link), f"recipe '{r['id']}': tutorial links need a title and url"
                 assert link["url"].startswith("https://"), f"recipe '{r['id']}': tutorial URL must be https"
+    pubs = data.get("publications", {})
+    for kind, entries in (("cite", pubs.get("cite", [])), ("selected", pubs.get("selected", []))):
+        for e in entries:
+            where = f"publication {e.get('doi')!r}"
+            for field in ("title", "doi") + (("authors", "venue", "year") if e.get("kind", "paper") == "paper" else ()):
+                assert field in e, f"{where} is missing '{field}'"
+            assert re.fullmatch(r"10\.\d{4,9}/\S+", str(e["doi"])), f"{where}: malformed DOI"
+            for i in e.get("for" if kind == "cite" else "uses", []):
+                assert i == "natverse" or i in ids, f"{where}: unknown tool {i!r}"
     for person in data.get("people", []):
         where = f"person '{person.get('name')}'"
         for field in ("name", "github", "group"):
@@ -113,6 +122,7 @@ def render_readme(data):
 def site_json(data):
     out = {k: data[k] for k in ("datasets", "categories", "pairs", "recipes")}
     out["people"] = data.get("people", [])
+    out["publications"] = data.get("publications", {"cite": [], "selected": []})
     out["tools"] = []
     for t in data["tools"]:
         t = {k: v for k, v in t.items() if k not in ("readme", "readme_section")}
