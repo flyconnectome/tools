@@ -81,7 +81,6 @@ In Python, we find packages analogous to those in R:
 5. [`fastcore`](https://schlegelp.github.io/fastcore-rs/) re-implements core `navis` and `nat` functions for working with neuron trees in Rust (`navis` uses this under the hood when installed). It comes with Python and R bindings.
 6. [`skeletor`](https://github.com/navis-org/skeletor) implements various skeletonization algorithms for meshes (`navis` uses this internally).
 7. [`sparse-cubes`](https://github.com/navis-org/sparse-cubes) is a library for extracting meshes from sparse voxel data (i.e. x/y/z voxel coordinates instead of a dense 3D matrix).
-8. [`nblast-large`](https://github.com/navis-org/navis-nblast-large) is a WIP implementation of NBLAST designed for _very_ large datasets (>100k neurons).
 
 ### Data access
 1. [`connecto`](https://schlegelp.github.io/connecto/) provides a unified interface for querying connectomes: the same calls work across datasets and backends (neuPrint, CAVE),
@@ -90,7 +89,9 @@ In Python, we find packages analogous to those in R:
 3. [`pymaid`](https://pymaid.readthedocs.io/en/latest/) lets you interface with CATMAID servers. Critically, it's built on top of `navis` and you can
    use any `navis` function with `pymaid` neurons. Side note: due to a name clash the library is called `python-catmaid` on PyPI.
 4. [`dvidtools`](https://dvidtools.readthedocs.io/en/latest/) lets you fetch data from [DVID](https://github.com/janelia-flyem/dvid) servers such as those used by Janelia for in-progress datasets.
-5. [`sea-serpent`](https://github.com/schlegelp/sea-serpent) is a dataframe-like wrapper around the [SeaTable](https://seatable.io/en/) API, which we use to manage annotations for various connectome datasets.
+5. [`neuprint-python`](https://connectome-neuprint.github.io/neuprint-python/docs/) is Janelia's official Python client for [neuPrint](https://neuprint.janelia.org) servers. It's not one of our tools but we have contributed
+   substantially (including the query functions for the first release); `navis` wraps it to fetch neurons as `navis` objects.
+6. [`sea-serpent`](https://github.com/schlegelp/sea-serpent) is a dataframe-like wrapper around the [SeaTable](https://seatable.io/en/) API, which we use to manage annotations for various connectome datasets.
 
 ### Connectomics analyses
 1. [`cocoa`](https://github.com/flyconnectome/cocoa) is a library for comparative connectomics: matching, connectivity, co-clustering and cell typing across _Drosophila_ datasets (FlyWire, hemibrain, MANC, male CNS).

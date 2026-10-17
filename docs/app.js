@@ -43,10 +43,10 @@ function card(t, { compact = false } = {}) {
   const repoUrl = t.repo ? `https://github.com/${t.repo}` : null;
   const docsDiffer = repoUrl && !t.url.startsWith(repoUrl);
   return `
-  <article class="card" data-lang="${t.language}" id="tool-${t.id}">
+  <article class="card" data-lang="${t.language}"${compact ? "" : ` id="tool-${t.id}"`}>
     <div class="card-head">
       <h3><a href="${esc(t.url)}">${esc(t.name)}</a></h3>
-      <span class="spacer"></span>${status}<span class="tag">${LANGS[t.language]}</span>
+      <span class="spacer"></span>${status}${t.maintainer ? `<span class="status ext" title="Not one of our tools - maintained by ${esc(t.maintainer)}">by ${esc(t.maintainer)}</span>` : ""}<span class="tag">${LANGS[t.language]}</span>
     </div>
     <p>${md(t.summary)}</p>
     ${!compact && ds.length ? `<div class="ds">${ds.slice(0, 7).map(([d, k]) =>
@@ -64,7 +64,7 @@ function matches(t) {
   if (state.cat && t.category !== state.cat) return false;
   if (state.dataset && !(state.dataset in (t.datasets || {}))) return false;
   if (state.q) {
-    const hay = `${t.name} ${t.id} ${plain(t.summary)} ${LANGS[t.language]} ${Object.keys(t.datasets || {}).map((d) => DSETS[d].name).join(" ")}`.toLowerCase();
+    const hay = `${t.name} ${t.id} ${t.maintainer || ""} ${plain(t.summary)} ${LANGS[t.language]} ${Object.keys(t.datasets || {}).map((d) => DSETS[d].name).join(" ")}`.toLowerCase();
     return state.q.toLowerCase().split(/\s+/).every((w) => hay.includes(w));
   }
   return true;
@@ -240,7 +240,7 @@ function renderGraph() {
   const svg = d3.select(box).insert("svg", ":first-child").attr("role", "img").attr("aria-label", "Dependency graph of the tools");
   const g = svg.append("g");
   const link = g.append("g").selectAll("line").data(links).join("line").attr("class", (d) => `link ${d.kind === "pair" ? "pair" : ""}`);
-  const node = g.append("g").selectAll("g").data(nodes).join("g").attr("class", (d) => `node ${d.language}`);
+  const node = g.append("g").selectAll("g").data(nodes).join("g").attr("class", (d) => `node ${d.language}${d.maintainer ? " ext" : ""}`);
   node.append("circle").attr("r", (d) => d.r);
   node.append("text").text((d) => d.name).attr("x", (d) => d.r + 4).attr("y", 4);
 
@@ -273,7 +273,7 @@ function renderGraph() {
     node.classed("on", (n) => nb.has(n.id));
     link.classed("on", (l) => l.source.id === d.id || l.target.id === d.id);
     const s = STATS?.repos?.[d.repo];
-    tip.innerHTML = `<b>${esc(d.name)}</b> · ${LANGS[d.language]}${s ? ` · ★ ${s.stars}` : ""}<br>${md(d.summary)}`;
+    tip.innerHTML = `<b>${esc(d.name)}</b> · ${LANGS[d.language]}${d.maintainer ? ` · by ${esc(d.maintainer)}` : ""}${s ? ` · ★ ${s.stars}` : ""}<br>${md(d.summary)}`;
     tip.hidden = false;
   }).on("mousemove", (e) => {
     tip.style.left = `${Math.min(e.clientX + 14, innerWidth - 320)}px`;
@@ -291,9 +291,10 @@ function renderGraph() {
 
 // --------------------------------------------------------------------- misc
 function renderHeroStats() {
-  const n = (lang) => TOOLS.filter((t) => t.language === lang).length;
+  const ours = TOOLS.filter((t) => !t.maintainer);
+  const n = (lang) => ours.filter((t) => t.language === lang).length;
   $("#hero-stats").innerHTML = [
-    [TOOLS.length, "tools"], [n("r"), "R packages"], [n("python"), "Python libraries"], [DATA.datasets.length, "datasets"],
+    [ours.length, "tools"], [n("r"), "R packages"], [n("python"), "Python libraries"], [DATA.datasets.length, "datasets"],
   ].map(([v, l]) => `<li><b>${v}</b>${l}</li>`).join("");
   if (STATS?.updated) $("#footer-meta").insertAdjacentHTML("beforeend", ` GitHub stats updated ${new Date(STATS.updated).toLocaleDateString()}.`);
 }

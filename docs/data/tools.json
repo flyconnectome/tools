@@ -154,8 +154,7 @@
     "nat.nblast"
    ],
    "python": [
-    "navis",
-    "nblast-large"
+    "navis"
    ]
   },
   {
@@ -169,6 +168,15 @@
     "flybrains",
     "fishbrains",
     "mousebrains"
+   ]
+  },
+  {
+   "what": "neuPrint",
+   "r": [
+    "neuprintr"
+   ],
+   "python": [
+    "neuprint-python"
    ]
   },
   {
@@ -721,7 +729,8 @@
     "skeletor",
     "fastcore",
     "octarine",
-    "sparse-cubes"
+    "sparse-cubes",
+    "neuprint-python"
    ],
    "status": "stable"
   },
@@ -843,20 +852,6 @@
    "depends": []
   },
   {
-   "id": "nblast-large",
-   "name": "nblast-large",
-   "language": "python",
-   "category": "general",
-   "url": "https://github.com/navis-org/navis-nblast-large",
-   "repo": "navis-org/navis-nblast-large",
-   "status": "wip",
-   "summary": "NBLAST implementation designed for _very_ large datasets (>100k neurons).",
-   "depends": [
-    "navis"
-   ],
-   "datasets": {}
-  },
-  {
    "id": "connecto",
    "name": "connecto",
    "language": "python",
@@ -878,6 +873,7 @@
    },
    "depends": [
     "navis",
+    "neuprint-python",
     "sea-serpent"
    ],
    "status": "stable"
@@ -936,6 +932,24 @@
    "status": "stable"
   },
   {
+   "id": "neuprint-python",
+   "name": "neuprint-python",
+   "language": "python",
+   "category": "data",
+   "url": "https://connectome-neuprint.github.io/neuprint-python/docs/",
+   "repo": "connectome-neuprint/neuprint-python",
+   "maintainer": "Janelia",
+   "summary": "Janelia's official Python client for [neuPrint](https://neuprint.janelia.org). Not ours, but we contributed substantially (including the first release); `navis` builds on it.",
+   "datasets": {
+    "hemibrain": "generic",
+    "malecns": "generic",
+    "manc": "generic",
+    "opticlobe": "generic"
+   },
+   "status": "stable",
+   "depends": []
+  },
+  {
    "id": "sea-serpent",
    "name": "sea-serpent",
    "language": "python",
@@ -963,6 +977,7 @@
    },
    "depends": [
     "fafbseg-py",
+    "neuprint-python",
     "sea-serpent"
    ],
    "status": "stable"
@@ -977,6 +992,7 @@
    "summary": "GUI for interactively exploring, clustering and annotating embeddings of 100k's of neurons.",
    "depends": [
     "navis",
+    "neuprint-python",
     "octarine",
     "octarine-navis-plugin",
     "nglscenes",

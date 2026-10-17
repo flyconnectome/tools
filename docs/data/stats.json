@@ -1,6 +1,10 @@
 {
- "updated": "2026-10-17T14:16:43+00:00",
+ "updated": "2026-10-17T14:47:35+00:00",
  "repos": {
+  "connectome-neuprint/neuprint-python": {
+   "stars": 86,
+   "pushed_at": "2026-10-15T19:57:45Z"
+  },
   "flyconnectome/aedes": {
    "stars": 2,
    "pushed_at": "2026-10-15T13:17:53Z"
@@ -152,10 +156,6 @@
   "navis-org/navis-mousebrains": {
    "stars": 3,
    "pushed_at": "2026-01-04T14:35:31Z"
-  },
-  "navis-org/navis-nblast-large": {
-   "stars": 0,
-   "pushed_at": "2022-05-23T13:15:23Z"
   },
   "navis-org/octarine-navis-plugin": {
    "stars": 1,

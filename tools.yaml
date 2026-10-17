@@ -15,6 +15,7 @@
 #               Set to false if the tool is mentioned in another tool's entry.
 #   readme_section: override README placement (default: "<language>/<category>")
 #   status:     stable (default) | wip | restricted
+#   maintainer: set for tools that are not ours (e.g. "Janelia"); shown as a label
 #   datasets:   {dataset-id: dedicated | generic}
 #   depends:    ids of other tools in this file this one builds on
 
@@ -368,7 +369,7 @@ tools:
          out the [Quickstart](https://navis-org.github.io/navis/stable/quickstart/) article
          and the various [tutorials](https://navis-org.github.io/navis/stable/generated/gallery/).
     datasets: {fafb: generic, hemibrain: generic, malecns: generic, manc: generic, opticlobe: generic, microns: dedicated, h01: dedicated}
-    depends: [skeletor, fastcore, octarine, sparse-cubes]
+    depends: [skeletor, fastcore, octarine, sparse-cubes, neuprint-python]
 
   - id: flybrains
     name: flybrains
@@ -457,17 +458,6 @@ tools:
     summary: Meshes from sparse voxel data (x/y/z coordinates instead of a dense 3D matrix).
     readme: "{@self} is a library for extracting meshes from sparse voxel data (i.e. x/y/z voxel coordinates instead of a dense 3D matrix)."
 
-  - id: nblast-large
-    name: nblast-large
-    language: python
-    category: general
-    url: "https://github.com/navis-org/navis-nblast-large"
-    repo: navis-org/navis-nblast-large
-    status: wip
-    summary: NBLAST implementation designed for _very_ large datasets (>100k neurons).
-    readme: "{@self} is a WIP implementation of NBLAST designed for _very_ large datasets (>100k neurons)."
-    depends: [navis]
-
   # ----------------------------------------------------------- Python: data
   - id: connecto
     name: connecto
@@ -480,7 +470,7 @@ tools:
       {@self} provides a unified interface for querying connectomes: the same calls work across datasets and backends (neuPrint, CAVE),
          taking care of each dataset's quirks (e.g. root IDs vs body IDs, naming conventions for cell types and sides).
     datasets: {flywire: dedicated, hemibrain: dedicated, malecns: dedicated, manc: dedicated, opticlobe: generic, fanc: dedicated, banc: dedicated, microns: dedicated, aedes: dedicated, fish2: dedicated}
-    depends: [navis, sea-serpent]
+    depends: [navis, neuprint-python, sea-serpent]
 
   - id: fafbseg-py
     name: fafbseg
@@ -517,6 +507,19 @@ tools:
     datasets: {hemibrain: generic, malecns: generic, manc: generic}
     depends: [sparse-cubes]
 
+  - id: neuprint-python
+    name: neuprint-python
+    language: python
+    category: data
+    url: "https://connectome-neuprint.github.io/neuprint-python/docs/"
+    repo: connectome-neuprint/neuprint-python
+    maintainer: Janelia
+    summary: Janelia's official Python client for [neuPrint](https://neuprint.janelia.org). Not ours, but we contributed substantially (including the first release); `navis` builds on it.
+    readme: |-
+      {@self} is Janelia's official Python client for [neuPrint](https://neuprint.janelia.org) servers. It's not one of our tools but we have contributed
+         substantially (including the query functions for the first release); `navis` wraps it to fetch neurons as `navis` objects.
+    datasets: {hemibrain: generic, malecns: generic, manc: generic, opticlobe: generic}
+
   - id: sea-serpent
     name: sea-serpent
     language: python
@@ -536,7 +539,7 @@ tools:
     summary: "Comparative connectomics: matching, co-clustering and cell typing across _Drosophila_ datasets."
     readme: "{@self} is a library for comparative connectomics: matching, connectivity, co-clustering and cell typing across _Drosophila_ datasets (FlyWire, hemibrain, MANC, male CNS)."
     datasets: {flywire: dedicated, hemibrain: dedicated, malecns: dedicated, manc: dedicated}
-    depends: [fafbseg-py, sea-serpent]
+    depends: [fafbseg-py, neuprint-python, sea-serpent]
 
   - id: bigclust2
     name: bigclust2
@@ -548,7 +551,7 @@ tools:
     readme: |-
       {@self} is a graphical interface for interactively exploring, clustering and annotating large (100k's of neurons) morphological or connectivity-based embeddings.
          It's a complete rewrite of [`bigclust`](https://github.com/flyconnectome/bigclust).
-    depends: [navis, octarine, octarine-navis-plugin, nglscenes, sea-serpent, dvidtools]
+    depends: [navis, neuprint-python, octarine, octarine-navis-plugin, nglscenes, sea-serpent, dvidtools]
 
   # --------------------------------------------------------------------- AI
   - id: coda-mcp
@@ -576,8 +579,9 @@ tools:
 # Equivalent tools in R and Python (website: "R <-> Python" view)
 pairs:
   - {what: Core neuron analysis & plotting, r: [nat], python: [navis]}
-  - {what: NBLAST, r: [nat.nblast], python: [navis, nblast-large]}
+  - {what: NBLAST, r: [nat.nblast], python: [navis]}
   - {what: Template brains & transforms, r: [nat.templatebrains, nat.flybrains, nat.jrcbrains], python: [flybrains, fishbrains, mousebrains]}
+  - {what: neuPrint, r: [neuprintr], python: [neuprint-python]}
   - {what: CATMAID, r: [rcatmaid], python: [pymaid]}
   - {what: FlyWire, r: [fafbseg], python: [fafbseg-py]}
   - {what: Comparative connectomics, r: [coconat, coconatfly], python: [cocoa, connecto]}

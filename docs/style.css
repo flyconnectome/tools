@@ -61,6 +61,7 @@
 
 /* -------------------------------------------------------------------- base */
 *, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }   /* components below set `display`, which would otherwise override `hidden` */
 html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
@@ -228,6 +229,7 @@ button { font: inherit; color: inherit; }
 }
 .status { font: 600 10.5px var(--font-mono); text-transform: uppercase; letter-spacing: .06em; padding: 2px 7px; border-radius: 6px; border: 1px solid; white-space: nowrap; }
 .status.wip { color: var(--wip); border-color: color-mix(in srgb, var(--wip) 50%, transparent); }
+.status.ext { color: var(--muted); border-color: var(--border-strong); text-transform: none; letter-spacing: 0; }
 .status.restricted { color: var(--restricted); border-color: color-mix(in srgb, var(--restricted) 50%, transparent); }
 .card-head .spacer { flex: 1; }
 .card p { margin: 0; color: var(--muted); font-size: 14.5px; line-height: 1.55; }
@@ -345,11 +347,13 @@ button { font: inherit; color: inherit; }
 .graph .node circle { stroke: var(--bg); stroke-width: 2; cursor: pointer; }
 .graph .node text { font: 500 11px var(--font-mono); fill: var(--text); pointer-events: none; paint-order: stroke; stroke: var(--surface); stroke-width: 3px; }
 .graph .node.r circle { fill: var(--r); } .graph .node.python circle { fill: var(--python); } .graph .node.web circle { fill: var(--web); }
+.graph .node.ext circle { fill-opacity: .25; stroke: var(--python); stroke-width: 1.5; stroke-dasharray: 3 2; }
 .graph.focus .node, .graph.focus .link { opacity: .12; transition: opacity .15s; }
 .graph.focus .node.on, .graph.focus .link.on { opacity: 1; }
 .graph-legend { position: absolute; left: 14px; bottom: 12px; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12.5px; color: var(--muted); pointer-events: none; }
 .graph-legend span { display: flex; align-items: center; gap: 6px; }
 .sw { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.sw.ext { border: 1.5px dashed var(--muted); }
 .sw.r { background: var(--r); } .sw.python { background: var(--python); } .sw.web { background: var(--web); }
 .ln { width: 22px; border-top: 1.5px solid var(--border-strong); display: inline-block; }
 .ln.dashed { border-top: 1.5px dashed var(--muted); }
