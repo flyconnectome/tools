@@ -62,6 +62,12 @@ def validate(data):
     for p in data["pairs"]:
         for i in p.get("r", []) + p.get("python", []):
             assert i in ids, f"pair '{p['what']}': unknown tool {i!r}"
+    for r in data["recipes"]:
+        for lang, links in (r.get("tutorials") or {}).items():
+            assert lang in ("r", "python"), f"recipe '{r['id']}': tutorials for unknown language {lang!r}"
+            for link in links:
+                assert {"title", "url"} <= set(link), f"recipe '{r['id']}': tutorial links need a title and url"
+                assert link["url"].startswith("https://"), f"recipe '{r['id']}': tutorial URL must be https"
     for person in data.get("people", []):
         where = f"person '{person.get('name')}'"
         for field in ("name", "github", "group"):

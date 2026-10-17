@@ -592,6 +592,12 @@ recipes:
   - id: neuprint
     title: Load neurons from neuPrint
     blurb: Fetch the hemibrain DA1 projection neurons and plot them in 3D. Requires a [neuPrint](https://neuprint.janelia.org) token.
+    tutorials:
+      r:
+        - {title: "hemibrain olfactory projection neurons", url: "https://natverse.org/neuprintr/articles/hemibrain_opns.html"}
+        - {title: "Custom Cypher queries", url: "https://natverse.org/neuprintr/articles/customquery.html"}
+      python:
+        - {title: "navis: neuPrint tutorial", url: "https://navis-org.github.io/navis/stable/generated/gallery/4_remote/tutorial_remote_00_neuprint/"}
     r: |-
       library(neuprintr)
       conn <- neuprint_login(server = "https://neuprint.janelia.org",
@@ -608,6 +614,13 @@ recipes:
   - id: flywire
     title: Work with FlyWire neurons
     blurb: Fetch meshes, skeletons and connectivity for a FlyWire cell type from the public release.
+    tutorials:
+      r:
+        - {title: "fafbseg: FAFB-FlyWire", url: "https://natverse.org/fafbseg/articles/FAFB-FlyWire.html"}
+      python:
+        - {title: "Setting up FlyWire access", url: "https://fafbseg-py.readthedocs.io/en/latest/source/tutorials/flywire_setup.html"}
+        - {title: "Fetching FlyWire neurons", url: "https://fafbseg-py.readthedocs.io/en/latest/source/tutorials/flywire_neurons.html"}
+        - {title: "FlyWire connectivity", url: "https://fafbseg-py.readthedocs.io/en/latest/source/tutorials/flywire_connectivity.html"}
     r: |-
       library(fafbseg)
       # one-off: flywire_set_token(); download_flywire_release_data()
@@ -625,6 +638,12 @@ recipes:
   - id: nblast
     title: Compare neurons with NBLAST
     blurb: NBLAST expects neurons in microns - convert units first!
+    tutorials:
+      r:
+        - {title: "NBLAST clustering", url: "https://natverse.org/nat.nblast/articles/NBLAST-Clustering.html"}
+      python:
+        - {title: "navis: NBLAST introduction", url: "https://navis-org.github.io/navis/stable/generated/gallery/5_nblast/tutorial_nblast_00_intro/"}
+        - {title: "NBLAST against the hemibrain", url: "https://navis-org.github.io/navis/stable/generated/gallery/5_nblast/zzz_tutorial_nblast_02_hemibrain/"}
     r: |-
       library(nat.nblast)
       dps <- dotprops(da1 * 8 / 1000, k = 5, resample = 1)  # 8nm voxels -> microns
@@ -640,6 +659,13 @@ recipes:
   - id: xform
     title: Move neurons between template brains
     blurb: Transform FAFB neurons into hemibrain space. Note that `JRCFIB2018F` is in microns in R but in nanometers in Python (use `JRCFIB2018Fum` for microns).
+    tutorials:
+      r:
+        - {title: "xform_brain() reference", url: "https://natverse.org/nat.templatebrains/reference/xform_brain.html"}
+        - {title: "nat.jrcbrains README", url: "https://github.com/natverse/nat.jrcbrains#readme"}
+      python:
+        - {title: "navis: transforms tutorial", url: "https://navis-org.github.io/navis/stable/generated/gallery/6_misc/tutorial_misc_01_transforms/"}
+        - {title: "flybrains README", url: "https://github.com/navis-org/navis-flybrains#readme"}
     r: |-
       library(nat.jrcbrains)
       download_saalfeldlab_registrations()   # one-off
@@ -652,6 +678,12 @@ recipes:
   - id: compare
     title: Compare cell types across connectomes
     blurb: Pull the same cell types from multiple datasets and co-cluster them by connectivity. Requires neuPrint and CAVE tokens.
+    tutorials:
+      r:
+        - {title: "coconatfly: getting started", url: "https://natverse.org/coconatfly/articles/getting-started.html"}
+        - {title: "Clustering TuTu neurons", url: "https://natverse.org/coconatfly/articles/TuTu.html"}
+      python:
+        - {title: "cocoa README", url: "https://github.com/flyconnectome/cocoa#readme"}
     r: |-
       library(coconatfly)
       ids <- cf_ids("DA1_lPN", datasets = c("hemibrain", "flywire"))
@@ -667,6 +699,11 @@ recipes:
   - id: connecto
     title: Query any connectome the same way
     blurb: "`connecto` speaks every dataset's dialect so you don't have to."
+    tutorials:
+      python:
+        - {title: "Quickstart", url: "https://schlegelp.github.io/connecto/get-started/quickstart/"}
+        - {title: "Your first query", url: "https://schlegelp.github.io/connecto/tutorials/first-query/"}
+        - {title: "Cross-dataset analysis", url: "https://schlegelp.github.io/connecto/tutorials/cross-dataset/"}
     python: |-
       import connecto as co
       fw = co.FlyWire()       # or co.FlyWire(backend="cave")

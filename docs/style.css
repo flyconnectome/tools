@@ -469,3 +469,15 @@ button { font: inherit; color: inherit; }
   background: var(--surface-2); border: 1px solid var(--border); color: var(--muted);
 }
 .contact-icon svg { width: 18px; height: 18px; fill: currentColor; }
+
+.recipe-panel .tutorials {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px;
+  padding: 14px 18px; border-top: 1px solid var(--border); background: var(--code-bg); font-size: 13.5px;
+}
+.recipe-panel .tutorials > span { font: 600 11.5px var(--font-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--faint); margin-right: 4px; }
+.recipe-panel .tutorials a {
+  display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: var(--text);
+  padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border-strong); background: var(--surface);
+}
+.recipe-panel .tutorials a:hover { border-color: var(--muted); }
+.recipe-panel .tutorials svg { width: 12px; height: 12px; fill: var(--faint); }

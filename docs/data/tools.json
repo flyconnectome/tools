@@ -223,6 +223,24 @@
    "id": "neuprint",
    "title": "Load neurons from neuPrint",
    "blurb": "Fetch the hemibrain DA1 projection neurons and plot them in 3D. Requires a [neuPrint](https://neuprint.janelia.org) token.",
+   "tutorials": {
+    "r": [
+     {
+      "title": "hemibrain olfactory projection neurons",
+      "url": "https://natverse.org/neuprintr/articles/hemibrain_opns.html"
+     },
+     {
+      "title": "Custom Cypher queries",
+      "url": "https://natverse.org/neuprintr/articles/customquery.html"
+     }
+    ],
+    "python": [
+     {
+      "title": "navis: neuPrint tutorial",
+      "url": "https://navis-org.github.io/navis/stable/generated/gallery/4_remote/tutorial_remote_00_neuprint/"
+     }
+    ]
+   },
    "r": "library(neuprintr)\nconn <- neuprint_login(server = \"https://neuprint.janelia.org\",\n                       dataset = \"hemibrain:v1.2.1\")\nda1 <- neuprint_read_neurons(\"DA1_lPN\")   # skeletons in 8nm voxels\nnat::plot3d(da1)",
    "python": "import navis\nimport navis.interfaces.neuprint as neu\nclient = neu.Client(\"https://neuprint.janelia.org\", dataset=\"hemibrain:v1.2.1\")\nsk = neu.fetch_skeletons(neu.NeuronCriteria(type=\"DA1_lPN\"))\nnavis.plot3d(sk)"
   },
@@ -230,6 +248,28 @@
    "id": "flywire",
    "title": "Work with FlyWire neurons",
    "blurb": "Fetch meshes, skeletons and connectivity for a FlyWire cell type from the public release.",
+   "tutorials": {
+    "r": [
+     {
+      "title": "fafbseg: FAFB-FlyWire",
+      "url": "https://natverse.org/fafbseg/articles/FAFB-FlyWire.html"
+     }
+    ],
+    "python": [
+     {
+      "title": "Setting up FlyWire access",
+      "url": "https://fafbseg-py.readthedocs.io/en/latest/source/tutorials/flywire_setup.html"
+     },
+     {
+      "title": "Fetching FlyWire neurons",
+      "url": "https://fafbseg-py.readthedocs.io/en/latest/source/tutorials/flywire_neurons.html"
+     },
+     {
+      "title": "FlyWire connectivity",
+      "url": "https://fafbseg-py.readthedocs.io/en/latest/source/tutorials/flywire_connectivity.html"
+     }
+    ]
+   },
    "r": "library(fafbseg)\n# one-off: flywire_set_token(); download_flywire_release_data()\nids <- coconatfly::cf_ids(flywire = \"DA1_lPN\")\nout <- flywire_partner_summary2(ids, partners = \"outputs\", threshold = 3)\nm <- read_cloudvolume_meshes(ids)",
    "python": "from fafbseg import flywire\nfrom fafbseg.flywire import NeuronCriteria as NC\nflywire.set_default_dataset(\"public\")\nm = flywire.get_mesh_neuron(NC(type=\"DA1_lPN\"))\nsk = flywire.get_skeletons(NC(type=\"DA1_lPN\"), dataset=783)\ncn = flywire.get_connectivity(NC(type=\"DA1_lPN\"))"
   },
@@ -237,6 +277,24 @@
    "id": "nblast",
    "title": "Compare neurons with NBLAST",
    "blurb": "NBLAST expects neurons in microns - convert units first!",
+   "tutorials": {
+    "r": [
+     {
+      "title": "NBLAST clustering",
+      "url": "https://natverse.org/nat.nblast/articles/NBLAST-Clustering.html"
+     }
+    ],
+    "python": [
+     {
+      "title": "navis: NBLAST introduction",
+      "url": "https://navis-org.github.io/navis/stable/generated/gallery/5_nblast/tutorial_nblast_00_intro/"
+     },
+     {
+      "title": "NBLAST against the hemibrain",
+      "url": "https://navis-org.github.io/navis/stable/generated/gallery/5_nblast/zzz_tutorial_nblast_02_hemibrain/"
+     }
+    ]
+   },
    "r": "library(nat.nblast)\ndps <- dotprops(da1 * 8 / 1000, k = 5, resample = 1)  # 8nm voxels -> microns\naba <- nblast_allbyall(dps)\nhc <- nhclust(scoremat = aba)\nplot(hc)",
    "python": "import navis\ndps = navis.make_dotprops(sk.convert_units(\"um\"), k=5, resample=1)\naba = navis.nblast_allbyall(dps)\nscores = navis.nblast(dps[:2], dps)   # query vs target"
   },
@@ -244,6 +302,28 @@
    "id": "xform",
    "title": "Move neurons between template brains",
    "blurb": "Transform FAFB neurons into hemibrain space. Note that `JRCFIB2018F` is in microns in R but in nanometers in Python (use `JRCFIB2018Fum` for microns).",
+   "tutorials": {
+    "r": [
+     {
+      "title": "xform_brain() reference",
+      "url": "https://natverse.org/nat.templatebrains/reference/xform_brain.html"
+     },
+     {
+      "title": "nat.jrcbrains README",
+      "url": "https://github.com/natverse/nat.jrcbrains#readme"
+     }
+    ],
+    "python": [
+     {
+      "title": "navis: transforms tutorial",
+      "url": "https://navis-org.github.io/navis/stable/generated/gallery/6_misc/tutorial_misc_01_transforms/"
+     },
+     {
+      "title": "flybrains README",
+      "url": "https://github.com/navis-org/navis-flybrains#readme"
+     }
+    ]
+   },
    "r": "library(nat.jrcbrains)\ndownload_saalfeldlab_registrations()   # one-off\nx.hb <- xform_brain(x, sample = \"FAFB14\", reference = \"JRCFIB2018F\")",
    "python": "import navis, flybrains\nflybrains.download_jrc_transforms()    # one-off, then restart Python\nx_hb = navis.xform_brain(x, source=\"FAFB14\", target=\"JRCFIB2018F\")"
   },
@@ -251,6 +331,24 @@
    "id": "compare",
    "title": "Compare cell types across connectomes",
    "blurb": "Pull the same cell types from multiple datasets and co-cluster them by connectivity. Requires neuPrint and CAVE tokens.",
+   "tutorials": {
+    "r": [
+     {
+      "title": "coconatfly: getting started",
+      "url": "https://natverse.org/coconatfly/articles/getting-started.html"
+     },
+     {
+      "title": "Clustering TuTu neurons",
+      "url": "https://natverse.org/coconatfly/articles/TuTu.html"
+     }
+    ],
+    "python": [
+     {
+      "title": "cocoa README",
+      "url": "https://github.com/flyconnectome/cocoa#readme"
+     }
+    ]
+   },
    "r": "library(coconatfly)\nids <- cf_ids(\"DA1_lPN\", datasets = c(\"hemibrain\", \"flywire\"))\nps <- cf_partner_summary(ids, partners = \"outputs\", threshold = 5)\ncf_cosine_plot(cf_ids(\"/type:lLN2.+\", datasets = c(\"hemibrain\", \"flywire\")))",
    "python": "import cocoa as cc\nhb = cc.Hemibrain(label=\"hemibrain\").add_neurons([\"SLP001\", \"SLP003\"])\nfw = cc.FlyWire(label=\"FlyWire\", materialization=783).add_neurons([\"SLP001\", \"SLP003\"])\ncl = cc.Clustering([hb, fw]).compile()\ntable = cl.to_table(clusters=cl.extract_homogeneous_clusters())"
   },
@@ -258,6 +356,22 @@
    "id": "connecto",
    "title": "Query any connectome the same way",
    "blurb": "`connecto` speaks every dataset's dialect so you don't have to.",
+   "tutorials": {
+    "python": [
+     {
+      "title": "Quickstart",
+      "url": "https://schlegelp.github.io/connecto/get-started/quickstart/"
+     },
+     {
+      "title": "Your first query",
+      "url": "https://schlegelp.github.io/connecto/tutorials/first-query/"
+     },
+     {
+      "title": "Cross-dataset analysis",
+      "url": "https://schlegelp.github.io/connecto/tutorials/cross-dataset/"
+     }
+    ]
+   },
    "python": "import connecto as co\nfw = co.FlyWire()       # or co.FlyWire(backend=\"cave\")\nhb = co.Hemibrain()\nhb.connectivity.edges(\"DA1_lPN\")              # pre, post, weight\nskels = fw.skeletons.get(fw.ids(\"DA1_lPN\")[:2])"
   }
  ],
