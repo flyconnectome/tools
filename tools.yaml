@@ -1,0 +1,671 @@
+# Single source of truth for the tools overview.
+#
+# `python scripts/build.py` turns this file into README.md (via
+# scripts/README.template.md) and docs/data/tools.json (for the website).
+#
+# Tool fields:
+#   id:         unique key; also used for {@id} links in `readme` texts
+#   name:       display name
+#   language:   r | python | web
+#   category:   general | data | datasets | analysis | ai
+#   url:        main link (docs, falls back to repo)
+#   repo:       GitHub "owner/name" (used for stars / last-updated stats)
+#   summary:    one-liner for the website cards (inline markdown)
+#   readme:     README entry; {@self} / {@other-id} expand to links.
+#               Set to false if the tool is mentioned in another tool's entry.
+#   readme_section: override README placement (default: "<language>/<category>")
+#   status:     stable (default) | wip | restricted
+#   datasets:   {dataset-id: dedicated | generic}
+#   depends:    ids of other tools in this file this one builds on
+
+datasets:
+  - {id: flywire,   name: FlyWire,        species: D. melanogaster, tissue: whole brain,     access: public,     url: "https://flywire.ai"}
+  - {id: fafb,      name: FAFB (CATMAID), species: D. melanogaster, tissue: whole brain,     access: public,     url: "https://fafb.catmaid.virtualflybrain.org"}
+  - {id: hemibrain, name: hemibrain,      species: D. melanogaster, tissue: central brain,   access: public,     url: "https://neuprint.janelia.org"}
+  - {id: malecns,   name: male CNS,       species: D. melanogaster, tissue: brain + VNC,     access: public,     url: "https://www.janelia.org/project-team/flyem/male-cns-connectome"}
+  - {id: manc,      name: MANC,           species: D. melanogaster, tissue: VNC,             access: public,     url: "https://neuprint.janelia.org"}
+  - {id: opticlobe, name: optic lobe,     species: D. melanogaster, tissue: optic lobe,      access: public,     url: "https://neuprint.janelia.org"}
+  - {id: fanc,      name: FANC,           species: D. melanogaster, tissue: VNC,             access: public}
+  - {id: banc,      name: BANC,           species: D. melanogaster, tissue: brain + VNC,     access: public,     url: "https://doi.org/10.1038/s41586-026-10735-w"}
+  - {id: l1em,      name: larva (L1EM),   species: D. melanogaster, tissue: larval CNS,      access: public,     url: "https://l1em.catmaid.virtualflybrain.org"}
+  - {id: yakuba,    name: D. yakuba VNC,  species: D. yakuba,       tissue: VNC,             access: restricted}
+  - {id: crant,     name: CRANT,          species: clonal raider ant, tissue: brain,         access: restricted}
+  - {id: aedes,     name: Aedes,          species: Aedes aegypti,   tissue: brain,           access: restricted}
+  - {id: fish2,     name: fish2,          species: larval zebrafish, tissue: whole brain,    access: restricted}
+  - {id: microns,   name: MICrONS,        species: mouse,           tissue: visual cortex,   access: public,     url: "https://www.microns-explorer.org"}
+  - {id: h01,       name: H01,            species: human,           tissue: temporal cortex, access: public,     url: "https://h01-release.storage.googleapis.com/landing.html"}
+
+categories:
+  - {id: general,  name: Core & visualization}
+  - {id: data,     name: Data access}
+  - {id: datasets, name: Dataset packages}
+  - {id: analysis, name: Connectomics analyses}
+  - {id: ai,       name: AI assistants}
+
+tools:
+  # --------------------------------------------------------------------- Web
+  - id: coda
+    name: Coda
+    language: web
+    category: analysis
+    url: "https://coda.science"
+    repo: navis-org/coda
+    summary: Browser-based node editor for querying and analyzing connectomes - no code required. Exports workflows as Python or R code.
+    readme: false   # has its own section in the README template
+    datasets: {flywire: dedicated, fafb: dedicated, hemibrain: dedicated, malecns: dedicated, manc: dedicated, opticlobe: dedicated, banc: dedicated, l1em: dedicated, microns: dedicated}
+
+  # ------------------------------------------------------------- R: general
+  - id: nat
+    name: nat
+    language: r
+    category: general
+    url: "https://natverse.org/nat/"
+    repo: natverse/nat
+    summary: The **n**euro**a**natomy **t**oolbox - core library for analysis and visualization of neuron morphology.
+    readme: |-
+      {@self} is a general-purpose library for working with neuronanatomical data.
+         I highly recommend having a look at the "Articles" in nat's [doc](https://natverse.org/nat/).
+
+  - id: nat.nblast
+    name: nat.nblast
+    language: r
+    category: general
+    url: "https://natverse.org/nat.nblast/"
+    repo: natverse/nat.nblast
+    summary: Implementation of the NBLAST algorithm for morphological comparison and clustering of neurons.
+    readme: "{@self} implements the NBLAST algorithm for morphological comparison of neurons (see [below](#nblast))."
+    depends: [nat]
+
+  - id: nat.templatebrains
+    name: nat.templatebrains
+    language: r
+    category: general
+    url: "https://natverse.org/nat.templatebrains/"
+    repo: natverse/nat.templatebrains
+    summary: Template brains and the machinery to transform data between them.
+    readme: "{@self}, {@nat.flybrains} and {@nat.jrcbrains} bundle template brains and transforms that let you xform e.g. neurons from one brain template to another (see [below](#transforms))."
+    depends: [nat]
+
+  - id: nat.flybrains
+    name: nat.flybrains
+    language: r
+    category: general
+    url: "https://natverse.org/nat.flybrains/"
+    repo: natverse/nat.flybrains
+    summary: Surfaces, bridging and mirroring registrations for _Drosophila_ template brains.
+    readme: false
+    depends: [nat.templatebrains]
+
+  - id: nat.jrcbrains
+    name: nat.jrcbrains
+    language: r
+    category: general
+    url: "https://github.com/natverse/nat.jrcbrains"
+    repo: natverse/nat.jrcbrains
+    summary: Bridging registrations between Janelia (JRC) template brains, FAFB and the hemibrain.
+    readme: false
+    depends: [nat.flybrains, nat.templatebrains]
+
+  - id: nat.ggplot
+    name: nat.ggplot
+    language: r
+    category: general
+    url: "https://natverse.org/nat.ggplot/"
+    repo: natverse/nat.ggplot
+    summary: Publication-quality 2D renderings of neurons with `ggplot2`.
+    readme: "{@self} helps you make publication-quality 2D renderings of neurons using `ggplot2`."
+    depends: [nat]
+
+  # ---------------------------------------------------------------- R: data
+  - id: neuprintr
+    name: neuprintr
+    language: r
+    category: data
+    url: "https://natverse.org/neuprintr/"
+    repo: natverse/neuprintr
+    summary: Query [neuPrint](https://neuprint.janelia.org) servers such as those hosting the Janelia connectomes.
+    readme: "{@self} lets you run queries against [neuPrint](https://neuprint.janelia.org) servers such as those hosting the Janelia connectomes."
+    datasets: {hemibrain: generic, malecns: generic, manc: generic, opticlobe: generic}
+    depends: [nat]
+
+  - id: rcatmaid
+    name: rcatmaid
+    language: r
+    category: data
+    url: "https://natverse.org/rcatmaid/"
+    repo: natverse/rcatmaid
+    summary: Interface with CATMAID servers, e.g. those hosting the FAFB and larval datasets on Virtual Fly Brain.
+    readme: |-
+      {@self} provides an interface with CATMAID servers such as those the VFB uses to host published data from the
+         FAFB or larval fruit fly datasets. `rcatmaid` is built on top of `nat` and you can use `nat` functions with neurons pulled via `rcatmaid`.
+    datasets: {fafb: dedicated, l1em: dedicated}
+    depends: [nat]
+
+  - id: neuromorphr
+    name: neuromorphr
+    language: r
+    category: data
+    url: "https://natverse.org/neuromorphr/"
+    repo: natverse/neuromorphr
+    summary: Search and pull neurons from [neuromorpho.org](https://neuromorpho.org).
+    readme: "{@self} lets you search and pull data from [neuromorpho.org](https://neuromorpho.org)."
+    depends: [nat]
+
+  - id: insectbrainr
+    name: insectbrainr
+    language: r
+    category: data
+    url: "https://natverse.org/insectbrainr/"
+    repo: natverse/insectbrainr
+    summary: Access to the [InsectBrainDB](https://insectbraindb.org).
+    readme: "{@self} provides access to the [InsectBrainDB](https://insectbraindb.org)."
+    depends: [nat]
+
+  - id: neuronbridger
+    name: neuronbridger
+    language: r
+    category: data
+    url: "https://natverse.org/neuronbridger/"
+    repo: natverse/neuronbridger
+    summary: Access to [NeuronBridge](https://neuronbridge.janelia.org) for matching EM neurons to light-level data.
+    readme: "{@self} provides access to [NeuronBridge](https://neuronbridge.janelia.org) for matching EM neurons to light-level data."
+
+  - id: fishatlas
+    name: fishatlas
+    language: r
+    category: data
+    url: "https://github.com/natverse/fishatlas"
+    repo: natverse/fishatlas
+    summary: Client for the larval zebrafish [Fish Brain Atlas](https://www.bi.mpg.de/baier/connectome) (~2,000 registered neurons).
+    readme: "{@self} provides R client utilities for interacting with the [Fish Brain Atlas Project](https://www.bi.mpg.de/baier/connectome), which has [successfully](https://doi.org/10.1016/j.neuron.2019.04.034) acquired and registered almost 2,000 neurons from the larval zebrafish into a standard, annotated template space."
+    depends: [nat]
+
+  - id: mouselightr
+    name: mouselightr
+    language: r
+    category: data
+    url: "https://github.com/natverse/mouselightr"
+    repo: natverse/mouselightr
+    summary: Client for Janelia's [MouseLight](https://www.janelia.org/project-team/mouselight) project (~1,000 registered mouse neurons).
+    readme: "{@self} provides an interface with the [MouseLight](https://www.janelia.org/project-team/mouselight) project at [Janelia Research Campus](https://www.janelia.org/), which has [successfully](https://doi.org/10.1016/j.cell.2019.07.042) acquired and registered ~1,000 neurons from the mouse brain into a standard, annotated template space."
+    depends: [nat]
+
+  - id: seatabler
+    name: seatabler
+    language: r
+    category: data
+    url: "https://flyconnectome.github.io/seatabler/"
+    repo: flyconnectome/seatabler
+    status: wip
+    summary: Generic client for [SeaTable](https://seatable.io/en/) servers, which we use to manage connectome annotations.
+    readme: "{@self} is a generic R client for [SeaTable](https://seatable.io/en/) servers, which we use to manage annotations for various connectome datasets (WIP: still in the design phase and not yet ready for use)."
+
+  # ------------------------------------------------------------ R: datasets
+  - id: fafbseg
+    name: fafbseg
+    language: r
+    category: datasets
+    url: "https://natverse.org/fafbseg/"
+    repo: natverse/fafbseg
+    summary: Tools for the [FlyWire](https://flywire.ai) whole-brain connectome (FAFB).
+    readme: "{@self} for the [FlyWire](https://flywire.ai) whole-brain connectome (FAFB)."
+    datasets: {flywire: dedicated}
+    depends: [nat, rcatmaid, nat.templatebrains]
+
+  - id: hemibrainr
+    name: hemibrainr
+    language: r
+    category: datasets
+    url: "https://natverse.org/hemibrainr/"
+    repo: natverse/hemibrainr
+    summary: Meta data and convenience functions for the Janelia hemibrain.
+    readme: "{@self} for the Janelia hemibrain."
+    datasets: {hemibrain: dedicated}
+    depends: [neuprintr, fafbseg, nat.nblast]
+
+  - id: malecns
+    name: malecns
+    language: r
+    category: datasets
+    url: "https://natverse.org/malecns/"
+    repo: natverse/malecns
+    summary: Access to the Janelia [male CNS](https://www.janelia.org/project-team/flyem/male-cns-connectome) connectome.
+    readme: "{@self} for the Janelia [male CNS](https://www.janelia.org/project-team/flyem/male-cns-connectome)."
+    datasets: {malecns: dedicated}
+    depends: [neuprintr, malevnc, coconat]
+
+  - id: malevnc
+    name: malevnc
+    language: r
+    category: datasets
+    url: "https://natverse.org/malevnc/"
+    repo: natverse/malevnc
+    summary: Access to the Janelia male adult nerve cord (MANC).
+    readme: "{@self} for the Janelia male adult nerve cord (MANC)."
+    datasets: {manc: dedicated}
+    depends: [neuprintr, fafbseg]
+
+  - id: fancr
+    name: fancr
+    language: r
+    category: datasets
+    url: "https://flyconnectome.github.io/fancr/"
+    repo: flyconnectome/fancr
+    summary: Access to the female adult nerve cord (FANC).
+    readme: "{@self} for the female adult nerve cord (FANC)."
+    datasets: {fanc: dedicated}
+    depends: [fafbseg, nat.flybrains]
+
+  - id: bancr
+    name: bancr
+    language: r
+    category: datasets
+    url: "https://natverse.org/bancr/"
+    repo: natverse/bancr
+    summary: Access to the brain and nerve cord (BANC) dataset.
+    readme: "{@self} for the brain and nerve cord (BANC)."
+    datasets: {banc: dedicated}
+    depends: [fafbseg, nat.flybrains, fancr, malevnc, seatabler]
+
+  - id: crantr
+    name: crantr
+    language: r
+    category: datasets
+    url: "https://flyconnectome.github.io/crantr/"
+    repo: flyconnectome/crantr
+    status: restricted
+    summary: Access to the in-progress clonal raider ant (CRANT) brain connectome.
+    readme: |-
+      In-progress datasets (access may be restricted): {@self} (clonal raider ant brain),
+         {@yakuba} (_D. yakuba_ male VNC),
+         {@aedes} (_Aedes aegypti_ brain) and {@fishr} (fish2 larval zebrafish brain).
+    datasets: {crant: dedicated}
+    depends: [bancr, fafbseg]
+
+  - id: yakuba
+    name: yakuba
+    language: r
+    category: datasets
+    url: "https://flyconnectome.github.io/yakuba/"
+    repo: flyconnectome/yakuba
+    status: restricted
+    summary: Access to the in-progress _D. yakuba_ male VNC connectome.
+    readme: false
+    datasets: {yakuba: dedicated}
+    depends: [malevnc, neuprintr]
+
+  - id: aedes
+    name: aedes
+    language: r
+    category: datasets
+    url: "https://flyconnectome.github.io/aedes/"
+    repo: flyconnectome/aedes
+    status: restricted
+    summary: Access to the in-progress _Aedes aegypti_ (mosquito) brain connectome.
+    readme: false
+    datasets: {aedes: dedicated}
+    depends: [fafbseg]
+
+  - id: fishr
+    name: fishr
+    language: r
+    category: datasets
+    url: "https://flyconnectome.github.io/fishr/"
+    repo: flyconnectome/fishr
+    status: restricted
+    summary: Access to the in-progress fish2 larval zebrafish whole-brain connectome.
+    readme: false
+    datasets: {fish2: dedicated}
+    depends: [neuprintr, coconat]
+
+  # ------------------------------------------------------------ R: analysis
+  - id: coconat
+    name: coconat
+    language: r
+    category: analysis
+    url: "https://natverse.org/coconat/"
+    repo: natverse/coconat
+    summary: Dataset-agnostic building blocks for connectome analyses.
+    readme: "{@self} provides dataset-agnostic building blocks for connectome analyses."
+
+  - id: coconatfly
+    name: coconatfly
+    language: r
+    category: analysis
+    url: "https://natverse.org/coconatfly/"
+    repo: natverse/coconatfly
+    summary: Uniform interface for comparative connectomics across _Drosophila_ datasets.
+    readme: "{@self} builds on `coconat` to provide a uniform interface for comparative connectomics across _Drosophila_ datasets (FlyWire, hemibrain, male CNS, MANC, FANC, BANC, etc.)."
+    datasets: {flywire: dedicated, hemibrain: dedicated, malecns: dedicated, manc: dedicated, opticlobe: dedicated, fanc: dedicated, banc: dedicated, yakuba: dedicated, crant: dedicated}
+    depends: [coconat, fafbseg, neuprintr]
+
+  - id: influencer
+    name: influencer
+    language: r
+    category: analysis
+    url: "https://natverse.org/influencer/"
+    repo: natverse/influencer
+    summary: Influence scores (indirect connectivity) of neurons in connectomes.
+    readme: "{@self} computes influence scores (i.e. indirect connectivity) of neurons in connectomes."
+
+  # -------------------------------------------------------- Python: general
+  - id: navis
+    name: navis
+    language: python
+    category: general
+    url: "https://navis-org.github.io/navis/stable/"
+    repo: navis-org/navis
+    summary: "`nat`'s serpentine sibling: general-purpose library for neuron analysis and visualization, including NBLAST and transforms."
+    readme: |-
+      {@self} is `nat`'s serpentine sibling: a general purpose neuron library for visualization and analysis
+         of neuroanatomical data. It also implements NBLAST and transforms, and features interfaces e.g. with
+         [Blender 3D](https://www.blender.org),
+         [neuPrint](https://navis-org.github.io/navis/stable/generated/gallery/4_remote/tutorial_remote_00_neuprint/),
+         [MICrONS](https://navis-org.github.io/navis/stable/generated/gallery/4_remote/tutorial_remote_02_microns/),
+         [neuromorpho](https://neuromorpho.org),
+         [NEURON](https://navis-org.github.io/navis/stable/generated/gallery/3_interfaces/tutorial_interfaces_00_neuron/) and
+         [InsectBrainDB](https://navis-org.github.io/navis/stable/generated/gallery/4_remote/tutorial_remote_03_insect_db/). Check
+         out the [Quickstart](https://navis-org.github.io/navis/stable/quickstart/) article
+         and the various [tutorials](https://navis-org.github.io/navis/stable/generated/gallery/).
+    datasets: {fafb: generic, hemibrain: generic, malecns: generic, manc: generic, opticlobe: generic, microns: dedicated, h01: dedicated}
+    depends: [skeletor, fastcore, octarine, sparse-cubes]
+
+  - id: flybrains
+    name: flybrains
+    language: python
+    category: general
+    url: "https://github.com/navis-org/navis-flybrains"
+    repo: navis-org/navis-flybrains
+    summary: Template brains and transforms for _Drosophila_, for use with `navis`.
+    readme: |-
+      {@self}, {@fishbrains} and {@mousebrains}
+         bundle template brains and transforms for use with `navis` that let you xform e.g. neurons from one brain template to another (see [below](#transforms)).
+    depends: [navis]
+
+  - id: fishbrains
+    name: fishbrains
+    language: python
+    category: general
+    url: "https://github.com/navis-org/navis-fishbrains"
+    repo: navis-org/navis-fishbrains
+    summary: Template brains and transforms for fish, for use with `navis`.
+    readme: false
+    depends: [navis]
+
+  - id: mousebrains
+    name: mousebrains
+    language: python
+    category: general
+    url: "https://github.com/navis-org/navis-mousebrains"
+    repo: navis-org/navis-mousebrains
+    summary: Template brains and transforms for mouse (e.g. Allen CCF), for use with `navis`.
+    readme: false
+    depends: [navis]
+
+  - id: octarine
+    name: octarine
+    language: python
+    category: general
+    url: "https://schlegelp.github.io/octarine/"
+    repo: schlegelp/octarine
+    summary: Fast, lightweight WGPU-based 3D viewer; a high-performance plotting backend for `navis`.
+    readme: "{@self} is a fast, lightweight 3D viewer; together with the {@octarine-navis-plugin} it serves as a high-performance 3D plotting backend for `navis`."
+
+  - id: octarine-navis-plugin
+    name: octarine-navis-plugin
+    language: python
+    category: general
+    url: "https://github.com/navis-org/octarine-navis-plugin"
+    repo: navis-org/octarine-navis-plugin
+    summary: Plugin that lets `octarine` display `navis` neurons, volumes and more.
+    readme: false
+    depends: [octarine, navis]
+
+  - id: nglscenes
+    name: nglscenes
+    language: python
+    category: general
+    url: "https://github.com/schlegelp/nglscenes"
+    repo: schlegelp/nglscenes
+    summary: Generate and manipulate [neuroglancer](https://github.com/google/neuroglancer) scenes; run and remote-control a local neuroglancer.
+    readme: "{@self} lets you generate and manipulate [neuroglancer](https://github.com/google/neuroglancer) scenes (from/to URLs, files or the clipboard), and run and remote-control a local neuroglancer."
+
+  - id: fastcore
+    name: fastcore
+    language: python
+    category: general
+    url: "https://schlegelp.github.io/fastcore-rs/"
+    repo: schlegelp/fastcore-rs
+    summary: Rust re-implementation of core `navis` and `nat` functions for neuron trees, with Python and R bindings.
+    readme: "{@self} re-implements core `navis` and `nat` functions for working with neuron trees in Rust (`navis` uses this under the hood when installed). It comes with Python and R bindings."
+
+  - id: skeletor
+    name: skeletor
+    language: python
+    category: general
+    url: "https://github.com/navis-org/skeletor"
+    repo: navis-org/skeletor
+    summary: Various algorithms for extracting skeletons from meshes.
+    readme: "{@self} implements various skeletonization algorithms for meshes (`navis` uses this internally)."
+
+  - id: sparse-cubes
+    name: sparse-cubes
+    language: python
+    category: general
+    url: "https://github.com/navis-org/sparse-cubes"
+    repo: navis-org/sparse-cubes
+    summary: Meshes from sparse voxel data (x/y/z coordinates instead of a dense 3D matrix).
+    readme: "{@self} is a library for extracting meshes from sparse voxel data (i.e. x/y/z voxel coordinates instead of a dense 3D matrix)."
+
+  - id: nblast-large
+    name: nblast-large
+    language: python
+    category: general
+    url: "https://github.com/navis-org/navis-nblast-large"
+    repo: navis-org/navis-nblast-large
+    status: wip
+    summary: NBLAST implementation designed for _very_ large datasets (>100k neurons).
+    readme: "{@self} is a WIP implementation of NBLAST designed for _very_ large datasets (>100k neurons)."
+    depends: [navis]
+
+  # ----------------------------------------------------------- Python: data
+  - id: connecto
+    name: connecto
+    language: python
+    category: data
+    url: "https://schlegelp.github.io/connecto/"
+    repo: schlegelp/connecto
+    summary: One interface for querying connectomes across datasets and backends (neuPrint, CAVE).
+    readme: |-
+      {@self} provides a unified interface for querying connectomes: the same calls work across datasets and backends (neuPrint, CAVE),
+         taking care of each dataset's quirks (e.g. root IDs vs body IDs, naming conventions for cell types and sides).
+    datasets: {flywire: dedicated, hemibrain: dedicated, malecns: dedicated, manc: dedicated, opticlobe: generic, fanc: dedicated, banc: dedicated, microns: dedicated, aedes: dedicated, fish2: dedicated}
+    depends: [navis, sea-serpent]
+
+  - id: fafbseg-py
+    name: fafbseg
+    language: python
+    category: data
+    url: "https://fafbseg-py.readthedocs.io/en/latest/"
+    repo: navis-org/fafbseg-py
+    summary: Tools for the [FlyWire](https://flywire.ai) connectome (FAFB) - meshes, skeletons, synapses, annotations.
+    readme: "{@self} provides functions to work with the FlyWire connectome (FAFB)."
+    datasets: {flywire: dedicated}
+    depends: [navis, pymaid, skeletor]
+
+  - id: pymaid
+    name: pymaid
+    language: python
+    category: data
+    url: "https://pymaid.readthedocs.io/en/latest/"
+    repo: navis-org/pymaid
+    summary: Interface with CATMAID servers; fully interoperable with `navis` (`python-catmaid` on PyPI).
+    readme: |-
+      {@self} lets you interface with CATMAID servers. Critically, it's built on top of `navis` and you can
+         use any `navis` function with `pymaid` neurons. Side note: due to a name clash the library is called `python-catmaid` on PyPI.
+    datasets: {fafb: generic, l1em: generic}
+    depends: [navis]
+
+  - id: dvidtools
+    name: dvidtools
+    language: python
+    category: data
+    url: "https://dvidtools.readthedocs.io/en/latest/"
+    repo: flyconnectome/dvid_tools
+    summary: Fetch data from [DVID](https://github.com/janelia-flyem/dvid) servers, e.g. Janelia's in-progress datasets.
+    readme: "{@self} lets you fetch data from [DVID](https://github.com/janelia-flyem/dvid) servers such as those used by Janelia for in-progress datasets."
+    datasets: {hemibrain: generic, malecns: generic, manc: generic}
+    depends: [sparse-cubes]
+
+  - id: sea-serpent
+    name: sea-serpent
+    language: python
+    category: data
+    url: "https://github.com/schlegelp/sea-serpent"
+    repo: schlegelp/sea-serpent
+    summary: Dataframe-like wrapper around the [SeaTable](https://seatable.io/en/) API, which we use to manage connectome annotations.
+    readme: "{@self} is a dataframe-like wrapper around the [SeaTable](https://seatable.io/en/) API, which we use to manage annotations for various connectome datasets."
+
+  # ------------------------------------------------------- Python: analysis
+  - id: cocoa
+    name: cocoa
+    language: python
+    category: analysis
+    url: "https://github.com/flyconnectome/cocoa"
+    repo: flyconnectome/cocoa
+    summary: "Comparative connectomics: matching, co-clustering and cell typing across _Drosophila_ datasets."
+    readme: "{@self} is a library for comparative connectomics: matching, connectivity, co-clustering and cell typing across _Drosophila_ datasets (FlyWire, hemibrain, MANC, male CNS)."
+    datasets: {flywire: dedicated, hemibrain: dedicated, malecns: dedicated, manc: dedicated}
+    depends: [fafbseg-py, sea-serpent]
+
+  - id: bigclust2
+    name: bigclust2
+    language: python
+    category: analysis
+    url: "https://flyconnectome.github.io/bigclust2/"
+    repo: flyconnectome/bigclust2
+    summary: GUI for interactively exploring, clustering and annotating embeddings of 100k's of neurons.
+    readme: |-
+      {@self} is a graphical interface for interactively exploring, clustering and annotating large (100k's of neurons) morphological or connectivity-based embeddings.
+         It's a complete rewrite of [`bigclust`](https://github.com/flyconnectome/bigclust).
+    depends: [navis, octarine, octarine-navis-plugin, nglscenes, sea-serpent, dvidtools]
+
+  # --------------------------------------------------------------------- AI
+  - id: coda-mcp
+    name: coda-mcp
+    language: web
+    category: ai
+    url: "https://coda.science/mcp.html"
+    repo: navis-org/coda-mcp
+    summary: MCP server that lets Claude, ChatGPT & co. build and run Coda workflows for you.
+    readme: "{@self} lets your AI client build and run workflows in Coda."
+    readme_section: ai
+    depends: [coda]
+
+  - id: natmcp
+    name: natmcp
+    language: r
+    category: ai
+    url: "https://flyconnectome.github.io/natmcp/"
+    repo: flyconnectome/natmcp
+    status: wip
+    summary: MCP server giving coding agents current, accurate information about natverse functions and datasets.
+    readme: "{@self} gives coding agents current, accurate information about natverse functions, idioms and datasets (experimental)."
+    readme_section: ai
+
+# Equivalent tools in R and Python (website: "R <-> Python" view)
+pairs:
+  - {what: Core neuron analysis & plotting, r: [nat], python: [navis]}
+  - {what: NBLAST, r: [nat.nblast], python: [navis, nblast-large]}
+  - {what: Template brains & transforms, r: [nat.templatebrains, nat.flybrains, nat.jrcbrains], python: [flybrains, fishbrains, mousebrains]}
+  - {what: CATMAID, r: [rcatmaid], python: [pymaid]}
+  - {what: FlyWire, r: [fafbseg], python: [fafbseg-py]}
+  - {what: Comparative connectomics, r: [coconat, coconatfly], python: [cocoa, connecto]}
+  - {what: SeaTable annotations, r: [seatabler], python: [sea-serpent]}
+
+# Short task-based snippets (website: "I want to..." section)
+recipes:
+  - id: neuprint
+    title: Load neurons from neuPrint
+    blurb: Fetch the hemibrain DA1 projection neurons and plot them in 3D. Requires a [neuPrint](https://neuprint.janelia.org) token.
+    r: |-
+      library(neuprintr)
+      conn <- neuprint_login(server = "https://neuprint.janelia.org",
+                             dataset = "hemibrain:v1.2.1")
+      da1 <- neuprint_read_neurons("DA1_lPN")   # skeletons in 8nm voxels
+      nat::plot3d(da1)
+    python: |-
+      import navis
+      import navis.interfaces.neuprint as neu
+      client = neu.Client("https://neuprint.janelia.org", dataset="hemibrain:v1.2.1")
+      sk = neu.fetch_skeletons(neu.NeuronCriteria(type="DA1_lPN"))
+      navis.plot3d(sk)
+
+  - id: flywire
+    title: Work with FlyWire neurons
+    blurb: Fetch meshes, skeletons and connectivity for a FlyWire cell type from the public release.
+    r: |-
+      library(fafbseg)
+      # one-off: flywire_set_token(); download_flywire_release_data()
+      ids <- coconatfly::cf_ids(flywire = "DA1_lPN")
+      out <- flywire_partner_summary2(ids, partners = "outputs", threshold = 3)
+      m <- read_cloudvolume_meshes(ids)
+    python: |-
+      from fafbseg import flywire
+      from fafbseg.flywire import NeuronCriteria as NC
+      flywire.set_default_dataset("public")
+      m = flywire.get_mesh_neuron(NC(type="DA1_lPN"))
+      sk = flywire.get_skeletons(NC(type="DA1_lPN"), dataset=783)
+      cn = flywire.get_connectivity(NC(type="DA1_lPN"))
+
+  - id: nblast
+    title: Compare neurons with NBLAST
+    blurb: NBLAST expects neurons in microns - convert units first!
+    r: |-
+      library(nat.nblast)
+      dps <- dotprops(da1 * 8 / 1000, k = 5, resample = 1)  # 8nm voxels -> microns
+      aba <- nblast_allbyall(dps)
+      hc <- nhclust(scoremat = aba)
+      plot(hc)
+    python: |-
+      import navis
+      dps = navis.make_dotprops(sk.convert_units("um"), k=5, resample=1)
+      aba = navis.nblast_allbyall(dps)
+      scores = navis.nblast(dps[:2], dps)   # query vs target
+
+  - id: xform
+    title: Move neurons between template brains
+    blurb: Transform FAFB neurons into hemibrain space. Note that `JRCFIB2018F` is in microns in R but in nanometers in Python (use `JRCFIB2018Fum` for microns).
+    r: |-
+      library(nat.jrcbrains)
+      download_saalfeldlab_registrations()   # one-off
+      x.hb <- xform_brain(x, sample = "FAFB14", reference = "JRCFIB2018F")
+    python: |-
+      import navis, flybrains
+      flybrains.download_jrc_transforms()    # one-off, then restart Python
+      x_hb = navis.xform_brain(x, source="FAFB14", target="JRCFIB2018F")
+
+  - id: compare
+    title: Compare cell types across connectomes
+    blurb: Pull the same cell types from multiple datasets and co-cluster them by connectivity. Requires neuPrint and CAVE tokens.
+    r: |-
+      library(coconatfly)
+      ids <- cf_ids("DA1_lPN", datasets = c("hemibrain", "flywire"))
+      ps <- cf_partner_summary(ids, partners = "outputs", threshold = 5)
+      cf_cosine_plot(cf_ids("/type:lLN2.+", datasets = c("hemibrain", "flywire")))
+    python: |-
+      import cocoa as cc
+      hb = cc.Hemibrain(label="hemibrain").add_neurons(["SLP001", "SLP003"])
+      fw = cc.FlyWire(label="FlyWire", materialization=783).add_neurons(["SLP001", "SLP003"])
+      cl = cc.Clustering([hb, fw]).compile()
+      table = cl.to_table(clusters=cl.extract_homogeneous_clusters())
+
+  - id: connecto
+    title: Query any connectome the same way
+    blurb: "`connecto` speaks every dataset's dialect so you don't have to."
+    python: |-
+      import connecto as co
+      fw = co.FlyWire()       # or co.FlyWire(backend="cave")
+      hb = co.Hemibrain()
+      hb.connectivity.edges("DA1_lPN")              # pre, post, weight
+      skels = fw.skeletons.get(fw.ids("DA1_lPN")[:2])

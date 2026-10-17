@@ -1,0 +1,50 @@
+{
+ "source": "FlyWire public release, materialization 783 (Dorkenwald et al., 2024; Schlegel et al., 2024)",
+ "scale_um": 0.1,
+ "neurons": [
+  {
+   "name": "APL",
+   "root_id": "720575940613583001",
+   "n": 56169
+  },
+  {
+   "name": "DA1_lPN",
+   "root_id": "720575940604407468",
+   "n": 1776
+  },
+  {
+   "name": "DA2_lPN",
+   "root_id": "720575940639337461",
+   "n": 890
+  },
+  {
+   "name": "DL3_lPN",
+   "root_id": "720575940634710629",
+   "n": 1330
+  },
+  {
+   "name": "DC3_adPN",
+   "root_id": "720575940637943374",
+   "n": 2912
+  },
+  {
+   "name": "DM6_adPN",
+   "root_id": "720575940625493400",
+   "n": 1976
+  },
+  {
+   "name": "VA1v_adPN",
+   "root_id": "720575940630989354",
+   "n": 1876
+  },
+  {
+   "name": "VM5d_adPN",
+   "root_id": "720575940629279544",
+   "n": 1544
+  }
+ ],
+ "brain": {
+  "nv": 4899,
+  "nf": 9999
+ }
+}

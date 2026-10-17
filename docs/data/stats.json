@@ -1,0 +1,197 @@
+{
+ "updated": "2026-10-17T14:16:43+00:00",
+ "repos": {
+  "flyconnectome/aedes": {
+   "stars": 2,
+   "pushed_at": "2026-10-15T13:17:53Z"
+  },
+  "flyconnectome/bigclust2": {
+   "stars": 4,
+   "pushed_at": "2026-07-30T07:35:17Z"
+  },
+  "flyconnectome/cocoa": {
+   "stars": 10,
+   "pushed_at": "2026-08-20T06:03:03Z"
+  },
+  "flyconnectome/crantr": {
+   "stars": 3,
+   "pushed_at": "2026-10-15T23:01:04Z"
+  },
+  "flyconnectome/dvid_tools": {
+   "stars": 1,
+   "pushed_at": "2026-08-05T04:57:52Z"
+  },
+  "flyconnectome/fancr": {
+   "stars": 2,
+   "pushed_at": "2024-09-04T22:21:27Z"
+  },
+  "flyconnectome/fishr": {
+   "stars": 1,
+   "pushed_at": "2026-10-15T11:27:12Z"
+  },
+  "flyconnectome/natmcp": {
+   "stars": 1,
+   "pushed_at": "2026-09-30T22:59:14Z"
+  },
+  "flyconnectome/seatabler": {
+   "stars": 1,
+   "pushed_at": "2026-08-25T13:00:19Z"
+  },
+  "flyconnectome/yakuba": {
+   "stars": 1,
+   "pushed_at": "2026-10-08T15:11:43Z"
+  },
+  "natverse/bancr": {
+   "stars": 6,
+   "pushed_at": "2026-08-25T18:26:11Z"
+  },
+  "natverse/coconat": {
+   "stars": 2,
+   "pushed_at": "2026-07-17T17:11:06Z"
+  },
+  "natverse/coconatfly": {
+   "stars": 11,
+   "pushed_at": "2026-08-19T07:13:58Z"
+  },
+  "natverse/fafbseg": {
+   "stars": 14,
+   "pushed_at": "2026-10-02T19:46:19Z"
+  },
+  "natverse/fishatlas": {
+   "stars": 2,
+   "pushed_at": "2019-08-06T15:32:32Z"
+  },
+  "natverse/hemibrainr": {
+   "stars": 9,
+   "pushed_at": "2026-09-18T16:10:56Z"
+  },
+  "natverse/influencer": {
+   "stars": 1,
+   "pushed_at": "2026-07-10T14:21:53Z"
+  },
+  "natverse/insectbrainr": {
+   "stars": 0,
+   "pushed_at": "2026-07-21T14:42:17Z"
+  },
+  "natverse/malecns": {
+   "stars": 774,
+   "pushed_at": "2026-08-23T21:21:54Z"
+  },
+  "natverse/malevnc": {
+   "stars": 4,
+   "pushed_at": "2026-07-16T18:36:16Z"
+  },
+  "natverse/mouselightr": {
+   "stars": 9,
+   "pushed_at": "2020-06-30T12:01:11Z"
+  },
+  "natverse/nat": {
+   "stars": 79,
+   "pushed_at": "2026-09-29T23:47:32Z"
+  },
+  "natverse/nat.flybrains": {
+   "stars": 2,
+   "pushed_at": "2022-08-16T13:48:34Z"
+  },
+  "natverse/nat.ggplot": {
+   "stars": 3,
+   "pushed_at": "2026-07-13T19:19:27Z"
+  },
+  "natverse/nat.jrcbrains": {
+   "stars": 0,
+   "pushed_at": "2026-02-11T23:57:29Z"
+  },
+  "natverse/nat.nblast": {
+   "stars": 18,
+   "pushed_at": "2026-08-24T22:06:22Z"
+  },
+  "natverse/nat.templatebrains": {
+   "stars": 3,
+   "pushed_at": "2026-03-21T15:05:15Z"
+  },
+  "natverse/neuprintr": {
+   "stars": 17,
+   "pushed_at": "2026-06-02T06:02:09Z"
+  },
+  "natverse/neuromorphr": {
+   "stars": 1,
+   "pushed_at": "2023-04-19T00:23:58Z"
+  },
+  "natverse/neuronbridger": {
+   "stars": 1,
+   "pushed_at": "2026-08-26T03:57:22Z"
+  },
+  "natverse/rcatmaid": {
+   "stars": 9,
+   "pushed_at": "2022-08-14T15:57:29Z"
+  },
+  "navis-org/coda": {
+   "stars": 7,
+   "pushed_at": "2026-10-15T09:10:21Z"
+  },
+  "navis-org/coda-mcp": {
+   "stars": 0,
+   "pushed_at": "2026-09-17T19:19:20Z"
+  },
+  "navis-org/fafbseg-py": {
+   "stars": 29,
+   "pushed_at": "2026-07-09T07:18:20Z"
+  },
+  "navis-org/navis": {
+   "stars": 138,
+   "pushed_at": "2026-10-14T21:06:34Z"
+  },
+  "navis-org/navis-fishbrains": {
+   "stars": 0,
+   "pushed_at": "2026-07-30T14:41:32Z"
+  },
+  "navis-org/navis-flybrains": {
+   "stars": 37,
+   "pushed_at": "2026-09-02T13:40:35Z"
+  },
+  "navis-org/navis-mousebrains": {
+   "stars": 3,
+   "pushed_at": "2026-01-04T14:35:31Z"
+  },
+  "navis-org/navis-nblast-large": {
+   "stars": 0,
+   "pushed_at": "2022-05-23T13:15:23Z"
+  },
+  "navis-org/octarine-navis-plugin": {
+   "stars": 1,
+   "pushed_at": "2026-08-02T07:48:13Z"
+  },
+  "navis-org/pymaid": {
+   "stars": 25,
+   "pushed_at": "2026-08-08T07:11:47Z"
+  },
+  "navis-org/skeletor": {
+   "stars": 262,
+   "pushed_at": "2026-08-08T06:25:42Z"
+  },
+  "navis-org/sparse-cubes": {
+   "stars": 26,
+   "pushed_at": "2026-08-09T06:41:36Z"
+  },
+  "schlegelp/connecto": {
+   "stars": 4,
+   "pushed_at": "2026-09-29T08:59:22Z"
+  },
+  "schlegelp/fastcore-rs": {
+   "stars": 2,
+   "pushed_at": "2026-08-13T06:11:22Z"
+  },
+  "schlegelp/nglscenes": {
+   "stars": 6,
+   "pushed_at": "2026-10-17T09:57:39Z"
+  },
+  "schlegelp/octarine": {
+   "stars": 62,
+   "pushed_at": "2026-09-22T07:38:13Z"
+  },
+  "schlegelp/sea-serpent": {
+   "stars": 7,
+   "pushed_at": "2026-08-21T13:40:29Z"
+  }
+ }
+}

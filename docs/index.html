@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connectome Tools</title>
+  <meta name="description" content="Open-source R and Python tools for neuroanatomy and connectomics from the Drosophila Connectomics Group (University of Cambridge) and the Jefferis lab (MRC LMB).">
+  <meta property="og:title" content="Connectome Tools">
+  <meta property="og:description" content="Open-source R and Python tools for neuroanatomy and connectomics.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='5' fill='%23ffc94d'/><path d='M16 11V2M16 21v9M11 16H2M21 16h9M12.5 12.5 6 6M19.5 19.5 26 26' stroke='%235b9cff' stroke-width='2.5' stroke-linecap='round'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Apply the saved theme before first paint to avoid a flash.
+    try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <script type="importmap">
+    {"imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }}
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="#top" aria-label="Connectome Tools home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="5" class="soma"/><path d="M16 11V2M16 21v9M11 16H2M21 16h9M12.5 12.5 6 6M19.5 19.5 26 26" class="neurites"/></svg>
+      <span>connectome<b>tools</b></span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="#tools">Tools</a>
+      <a href="#datasets">Datasets</a>
+      <a href="#recipes">Recipes</a>
+      <a href="#ecosystem">Ecosystem</a>
+      <a href="https://github.com/flyconnectome/tools" class="gh" aria-label="GitHub repository">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <button class="theme-toggle" type="button" aria-label="Toggle light/dark theme">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.4 5.4 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- ============================================================ HERO -->
+    <section class="hero">
+      <div class="hero-canvas" id="hero-canvas" aria-hidden="true"></div>
+      <div class="hero-text">
+        <p class="eyebrow">Open source · R · Python · Web</p>
+        <h1>Tools for <span class="grad">neuroanatomy</span> &amp;&nbsp;<span class="grad">connectomics</span></h1>
+        <p class="lede">
+          Libraries, apps and dataset packages to fetch, analyze, compare and visualize neurons and connectomes -
+          from the <a href="https://www.zoo.cam.ac.uk/research/groups/connectomics">Drosophila Connectomics Group</a> (University of Cambridge)
+          and the <a href="https://www2.mrc-lmb.cam.ac.uk/group-leaders/h-to-m/gregory-jefferis/">Jefferis lab</a> (MRC LMB).
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="https://coda.science">
+            <span>Start without code: <b>Coda</b></span>
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" /></svg>
+          </a>
+          <a class="btn" href="#tools">Browse the tools</a>
+        </div>
+        <ul class="hero-stats" id="hero-stats"></ul>
+      </div>
+      <div class="hero-legend" id="hero-legend">
+        <p class="legend-title">The APL neuron and seven olfactory projection neurons from the <a href="https://flywire.ai">FlyWire</a> connectome - drag to rotate.</p>
+        <ul></ul>
+      </div>
+    </section>
+
+    <!-- ============================================================ TOOLS -->
+    <section id="tools" class="section">
+      <div class="section-head">
+        <h2>Tools</h2>
+        <p>Everything from general-purpose neuron libraries to dataset-specific packages. Many tools exist in both
+          R (the <a href="https://natverse.org">natverse</a>) and Python (the <a href="https://github.com/navis-org">navis</a> ecosystem).</p>
+      </div>
+
+      <div class="filters" role="search">
+        <div class="filter-row">
+          <label class="search">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m13 13 4.5 4.5"/></svg>
+            <input type="search" id="q" placeholder="Search tools…" aria-label="Search tools">
+          </label>
+          <div class="chips" id="lang-chips" role="group" aria-label="Language"></div>
+          <div class="view-toggle" role="group" aria-label="View">
+            <button type="button" data-view="grid" class="active">Grid</button>
+            <button type="button" data-view="pairs">R ↔ Python</button>
+          </div>
+        </div>
+        <div class="filter-row">
+          <div class="chips" id="cat-chips" role="group" aria-label="Category"></div>
+          <label class="select">
+            <span>I work on</span>
+            <select id="dataset-filter" aria-label="Filter by dataset"><option value="">any dataset</option></select>
+          </label>
+        </div>
+      </div>
+
+      <p class="result-count" id="result-count" aria-live="polite"></p>
+      <div class="grid" id="tool-grid"></div>
+      <div class="pairs" id="pair-view" hidden></div>
+    </section>
+
+    <!-- ========================================================= DATASETS -->
+    <section id="datasets" class="section">
+      <div class="section-head">
+        <h2>Datasets</h2>
+        <p>Which tool works with which connectome? <span class="dot dedicated"></span> dedicated support (dataset-specific functions, meta data)
+          · <span class="dot generic"></span> generic access (e.g. any neuPrint or CATMAID server). Click a dataset to filter the tools.</p>
+      </div>
+      <div class="matrix-wrap" tabindex="0" aria-label="Dataset support matrix (scrollable)">
+        <table class="matrix" id="matrix"></table>
+      </div>
+    </section>
+
+    <!-- ========================================================== RECIPES -->
+    <section id="recipes" class="section">
+      <div class="section-head">
+        <h2>I want to…</h2>
+        <p>Short recipes for common tasks, side by side in R and Python. See each package's docs for the full story.</p>
+      </div>
+      <div class="recipes">
+        <ul class="recipe-list" id="recipe-list" role="tablist" aria-label="Recipes"></ul>
+        <div class="recipe-panel" id="recipe-panel" role="tabpanel"></div>
+      </div>
+    </section>
+
+    <!-- ======================================================== ECOSYSTEM -->
+    <section id="ecosystem" class="section">
+      <div class="section-head">
+        <h2>Ecosystem</h2>
+        <p>How the packages build on each other. Node size reflects GitHub stars; dashed lines connect R and Python equivalents.
+          Hover to highlight a package's neighborhood, click to open it.</p>
+      </div>
+      <div class="graph" id="graph">
+        <div class="graph-legend">
+          <span><i class="sw r"></i>R</span><span><i class="sw python"></i>Python</span><span><i class="sw web"></i>Web</span>
+          <span><i class="ln"></i>depends on</span><span><i class="ln dashed"></i>equivalent</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Maintained by the <a href="https://flyconnecto.me">Drosophila Connectomics Group</a> (University of Cambridge) and the
+      <a href="https://www2.mrc-lmb.cam.ac.uk/group-leaders/h-to-m/gregory-jefferis/">Jefferis lab</a> (MRC LMB).
+      Something missing or wrong? Edit <a href="https://github.com/flyconnectome/tools/blob/main/tools.yaml"><code>tools.yaml</code></a>.</p>
+    <p class="small" id="footer-meta">Hero neurons: FlyWire public release 783 (<a href="https://doi.org/10.1038/s41586-024-07558-y">Dorkenwald <i>et al.</i>, 2024</a>;
+      <a href="https://doi.org/10.1038/s41586-024-07686-5">Schlegel <i>et al.</i>, 2024</a>).</p>
+  </footer>
+
+  <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+  <script type="module" src="app.js"></script>
+  <script type="module" src="hero.js"></script>
+</body>
+</html>

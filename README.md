@@ -1,6 +1,8 @@
+<!-- This file is generated from tools.yaml and scripts/README.template.md by scripts/build.py - edit those instead! -->
 # Neuroscience tools
 
-We have developed multiple tools to work with neuroanatomical and connectomics data. Here is a quick overview:
+We have developed multiple tools to work with neuroanatomical and connectomics data. Here is a quick overview
+(also available as a website: **[flyconnectome.github.io/tools](https://flyconnectome.github.io/tools/)**):
 
 <p align="center">
 <img src="https://github.com/flyconnectome/tools/raw/main/img/tools.png" width="600">
