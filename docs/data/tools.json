@@ -1024,7 +1024,13 @@
     "opticlobe": "dedicated",
     "banc": "dedicated",
     "l1em": "dedicated",
-    "microns": "dedicated"
+    "microns": "dedicated",
+    "fanc": "generic",
+    "yakuba": "generic",
+    "crant": "generic",
+    "aedes": "generic",
+    "fish2": "generic",
+    "h01": "generic"
    },
    "status": "stable",
    "depends": []

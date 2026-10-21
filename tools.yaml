@@ -53,7 +53,7 @@ tools:
     repo: navis-org/coda
     summary: Browser-based node editor for querying and analyzing connectomes - no code required. Exports workflows as Python or R code.
     readme: false   # has its own section in the README template
-    datasets: {flywire: dedicated, fafb: dedicated, hemibrain: dedicated, malecns: dedicated, manc: dedicated, opticlobe: dedicated, banc: dedicated, l1em: dedicated, microns: dedicated}
+    datasets: {flywire: dedicated, fafb: dedicated, hemibrain: dedicated, malecns: dedicated, manc: dedicated, opticlobe: dedicated, banc: dedicated, l1em: dedicated, microns: dedicated, fanc: generic, yakuba: generic, crant: generic, aedes: generic, fish2: generic, h01: generic}
 
   # ------------------------------------------------------------- R: general
   - id: nat
